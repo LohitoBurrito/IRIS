@@ -14,7 +14,7 @@ function JoinGui() {
 
     const changeDesc = (e) => {
         e.preventDefault();
-        Axios.post('http://localhost:4000/api/post/addJoin', JSON.stringify({ content: content }),  {
+        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/addJoin', JSON.stringify({ content: content }),  {
             headers: {
               'Content-Type': 'application/json'
             }
@@ -24,7 +24,7 @@ function JoinGui() {
     }
     const addQuestion = (e) => {
         e.preventDefault();
-        Axios.post('http://localhost:4000/api/post/addQuestion', JSON.stringify({ question: question }), {
+        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/addQuestion', JSON.stringify({ question: question }), {
             headers: {
               'Content-Type': 'application/json'
             }
@@ -34,7 +34,7 @@ function JoinGui() {
     }
     const deleteQuestion = (e) => {
         e.preventDefault();
-        Axios.post('http://localhost:4000/api/post/deleteQuestion', JSON.stringify({ question: delQuestion }), {
+        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/deleteQuestion', JSON.stringify({ question: delQuestion }), {
             headers: {
               'Content-Type': 'application/json'
             }

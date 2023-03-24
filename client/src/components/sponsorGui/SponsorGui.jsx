@@ -21,12 +21,12 @@ function SponsorGui() {
                 "Content-Type":"multipart/form-data"
             }
         }
-        Axios.post('http://localhost:4000/api/post/addSponsor', formdata, config);
+        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/addSponsor', formdata, config);
     }
 
     const deleteFile = (e) => {
         e.preventDefault();
-        Axios.post('http://localhost:4000/api/post/deleteSponsor', JSON.stringify({ 
+        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/deleteSponsor', JSON.stringify({ 
             title: deleteTitle,
           }), {
             headers: {

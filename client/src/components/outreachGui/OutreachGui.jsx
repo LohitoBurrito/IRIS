@@ -25,7 +25,7 @@ function OutreachGui() {
         formdata.append("zoom", zoom);
         formdata.append("width", width);
         formdata.append("filename", "images/" + filename.name)
-        Axios.post('http://localhost:4000/api/post/addOutreach', formdata, {
+        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/addOutreach', formdata, {
             headers: {
                 "Content-Type":"multipart/form-data"
             }
@@ -34,7 +34,7 @@ function OutreachGui() {
 
     const deleteOutreach = (e) => {
         e.preventDefault();
-        Axios.post('http://localhost:4000/api/post/deleteOutreach', JSON.stringify({ 
+        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/deleteOutreach', JSON.stringify({ 
             outreachTitle: deleteTitle
         }), {
             headers: {

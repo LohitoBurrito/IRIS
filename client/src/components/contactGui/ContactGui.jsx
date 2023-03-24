@@ -13,7 +13,7 @@ function ContactGui() {
 
     const uploadInstagram = (e) => {
         e.preventDefault();
-        Axios.post("http://localhost:4000/api/post/instagram", JSON.stringify({ 
+        Axios.post("https://illinoisroboticsinspacebackend.onrender.com/api/post/instagram", JSON.stringify({ 
             link: instagram,
           }), {
             headers: {
@@ -24,7 +24,7 @@ function ContactGui() {
 
     const uploadYoutube = (e) => {
         e.preventDefault();
-        Axios.post("http://localhost:4000/api/post/youtube", JSON.stringify({ 
+        Axios.post("https://illinoisroboticsinspacebackend.onrender.com/api/post/youtube", JSON.stringify({ 
             link: youtube,
           }), {
             headers: {
@@ -35,7 +35,7 @@ function ContactGui() {
 
     const uploadTwitter = (e) => {
         e.preventDefault();
-        Axios.post("http://localhost:4000/api/post/twitter", JSON.stringify({ 
+        Axios.post("https://illinoisroboticsinspacebackend.onrender.com/api/post/twitter", JSON.stringify({ 
             link: twitter,
           }), {
             headers: {
@@ -46,7 +46,7 @@ function ContactGui() {
 
     const uploadFacebook = (e) => {
         e.preventDefault();
-        Axios.post("http://localhost:4000/api/post/facebook", JSON.stringify({ 
+        Axios.post("https://illinoisroboticsinspacebackend.onrender.com/api/post/facebook", JSON.stringify({ 
             link: facebook,
           }), {
             headers: {
@@ -57,7 +57,7 @@ function ContactGui() {
 
     const uploadGmail = (e) => {
         e.preventDefault();
-        Axios.post("http://localhost:4000/api/post/gmail", JSON.stringify({ 
+        Axios.post("https://illinoisroboticsinspacebackend.onrender.com/api/post/gmail", JSON.stringify({ 
             link: gmail,
           }), {
             headers: {
@@ -68,7 +68,7 @@ function ContactGui() {
 
     const uploadSlack = (e) => {
         e.preventDefault();
-        Axios.post("http://localhost:4000/api/post/slack", JSON.stringify({ 
+        Axios.post("https://illinoisroboticsinspacebackend.onrender.com/api/post/slack", JSON.stringify({ 
             link: slack,
           }), {
             headers: {

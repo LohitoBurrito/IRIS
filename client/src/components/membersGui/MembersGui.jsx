@@ -27,7 +27,7 @@ function MembersGui() {
         formdata.append("yPos", y);
         formdata.append("Zoom", zoom);
         formdata.append("filename", "images/" + filename.name)
-        Axios.post('http://localhost:4000/api/post/addMember', formdata, {
+        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/addMember', formdata, {
             headers: {
                 "Content-Type":"multipart/form-data"
             }
@@ -35,7 +35,7 @@ function MembersGui() {
     }
     const deleteMember = (e) => {
         e.preventDefault();
-        Axios.post('http://localhost:4000/api/post/deleteMember', JSON.stringify({ 
+        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/deleteMember', JSON.stringify({ 
             memberName: deleteName
         }), {
             headers: {

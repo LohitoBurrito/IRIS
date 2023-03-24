@@ -100,7 +100,7 @@ function Sidebar(props) {
             <a href='#contactGui'><button className='Contact' onClick={() => { changePage('Contact') }}><MdOutlineEmail className='icon'/>{ contact.current }</button></a>
             <a href='#joinGui'><button className='Join' onClick={() => { changePage('Join') }}><MdOutlineHandshake className='icon'/>{ Join.current }</button></a>
             <button className='SignOut' onClick={() => { 
-              Axios.post("http://localhost:4000/api/post/logout");  
+              Axios.post("https://illinoisroboticsinspacebackend.onrender.com/api/post/logout");  
             }}><FaSignOutAlt className='icon'/>{ logOut.current }</button>
         </div>
         <div className='button'>
