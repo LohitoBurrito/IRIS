@@ -1,0 +1,75 @@
+.footer {
+    width: 100vw;
+    height: 45vh;
+    background-color: #f4f5f5;
+    display: flex;
+    justify-content: center;
+}
+.footer .footerBox {
+    width: 25vw;
+    height: 100%;
+}
+.footer .logoBox {
+    padding-top: 25px;
+    width: 100%;
+    height: 25%;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.footer .logoBox .logo {
+    position: relative;
+    transform: translateY(5vh);
+    letter-spacing: 2px;
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 45.5px;
+    font-weight: 300;
+    transition: 0.5s;
+    color:  #009FD4;
+}
+.footer .logoBox .logo::after {
+    content: "";
+    position: absolute;
+    background-color: #009FD4;
+    height: 1px;
+    width: 0%;
+    left: 39%;
+    bottom: 20px;
+    transition: 0.2s;
+}
+.footer .logoBox .logo:hover::after {
+    width: 22%;
+}
+.footer .socials {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: space-around;
+}
+.footer .socials .socialsContainer {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.footer .socials .socialsContainer a {
+    font-family: 'Josefin Sans', sans-serif;
+    transform: translateY(4vh);
+    font-size: 42px;
+    color: black;
+    transition: 0.5s;
+}
+.footer .socials .socialsContainer a:hover {
+    font-size: 56px;
+    color:  #009FD4;
+}
+.footer .copyright {
+    width: 100%;
+}
+.footer .copyright .para {
+    text-align: center;
+    transform: translateY(4vh);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+}

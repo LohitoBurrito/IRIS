@@ -1,0 +1,47 @@
+.sponsor {
+    font-family: 'Josefin Sans', sans-serif;
+}
+.sponsor h1 {
+    padding-top: 23vh;
+    padding-bottom: 5vh;
+    text-align: center;
+    font-size: 60px;
+    color: #484b49;
+}
+.sponsor .bruh {
+    width: 50vw;
+    margin-left: 25vw;
+    padding-top: 40px;
+    text-align: center;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+.sponsor h2 {
+    padding-top: 5vh;
+    text-align: center;
+    font-size: 60px;
+    color: #484b49;
+    padding-bottom: 30px;
+}
+.sponsor h3 {
+    text-align: center;
+    font-weight: 300;
+    font-size: 30px;
+}
+.sponsor h3 a {
+    color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 30px;
+    background-color: #009FD4;
+    text-decoration: none;
+}
+.sponsorCards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-left: 100px;
+    padding-right: 100px;
+}

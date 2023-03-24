@@ -1,0 +1,12 @@
+.calendar h1 {
+    padding-top: 23vh;
+    padding-bottom: 1vh;
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 60px;
+    color: #484b49;
+}
+.calendar .calendarContainer {
+    display: flex;
+    justify-content: center;
+}

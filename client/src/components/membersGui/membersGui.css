@@ -1,0 +1,194 @@
+.membersGui .Title {
+    padding-top: 20px;
+    color: white;
+    padding-left: 20px;
+    font-size: 75px;
+    font-weight: 300;
+}
+.membersGui form input {
+    border-radius: 20px;
+    font-family: 'Josefin Sans', sans-serif;  
+    width: 500px;
+    padding: 10px;
+}
+.membersGui form textarea {
+    font-family: 'Josefin Sans', sans-serif;  
+    font-size: 15px;
+    padding: 10px;
+    width: 500px;
+    height: 200px;
+    border-radius: 20px;
+}
+.forms2 form {
+    display: block;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.forms2 {
+    display: flex;
+    flex-wrap: wrap;
+}
+.addMember {
+    height: 40px;
+    color: black;
+    border-radius: 20px;
+    font-family: 'Josefin Sans', sans-serif;  
+    background-color: white;
+    cursor: pointer;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.deleteMember {
+    height: 40px;
+    color: black;
+    border-radius: 20px;
+    font-family: 'Josefin Sans', sans-serif;  
+    background-color: white;
+    cursor: pointer;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+input[type="file"] {
+    margin-right: 200px;    
+}
+.custom-file-upload {
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    font-size: 12px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.members .memberHeader {
+    padding-top: 23vh;
+    padding-bottom: 1vh;
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 60px;
+    color: #484b49;
+}
+.cards {
+    width: 260px;
+    height: 400px;
+    display: block;
+    border-radius: 30px;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: #f7f6f6;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    transition: 0.5s;
+}
+.cards:hover {
+    background: rgba(0, 0, 0, 0.75);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+}
+.cards p {
+    opacity: 0;
+    transition: 0.2s;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    transform: translateY(-250px);
+    word-wrap: break-word
+}
+.cards:hover p {
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    transform: translateY(-250px);
+    opacity: 1;
+    word-wrap: break-word
+}
+.cards:hover h1,
+.cards:hover .roleContainer em {
+    opacity: 0;
+}
+
+.cards .roleContainer {
+    display: flex;
+    justify-content: center;
+}
+.cards .roleContainer em {
+    margin-top: 20px;
+    color: #484b49;
+    font-weight: 500;
+    font-size: 25px;
+}
+.cards .name {
+    margin-top: 40px;
+    text-align: center;
+    color: #484b49;
+    font-weight: 300;
+    font-size: 25px;
+    width: 100%;
+}
+.cards a {
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+    width: 50%;
+    margin-left: 25%;
+    text-decoration: none;
+    font-weight: 300;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    color: white;
+    background-color: #009FD4;
+    border-radius: 40px;
+    transition: 0.2s;
+} 
+.cards a:hover {
+    background-color: #0088b5;
+}
+.cards:hover a {
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+    width: 50%;
+    margin-left: 25%;
+    text-decoration: none;
+    font-weight: 300;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    color: black;
+    background-color: white;
+    border-radius: 40px;
+    transition: 0.2s;
+}
+.pictureContainer {
+    height: 150px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 100px;
+    transition: 0.2s;
+}
+.descContainer {
+    width: 100%;
+    height: 100px;
+}
+.cards:hover .pictureContainer {
+    opacity: 0;
+}
+.forms2 h2 {
+    color: white;
+    font-size: 50px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: -25px;
+}

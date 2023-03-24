@@ -1,0 +1,96 @@
+.Home {
+    font-family: 'Josefin Sans', sans-serif;
+}
+.Home .event {
+    height: 72.5vh;
+    width: 100vw;
+}
+.Home .teamGlance h1,
+.Home .aboutUs h1,
+.Home .event h1 {
+    text-align: center;
+    color: #3d3c3d;
+    padding-top: 4vh;
+    font-size: 42px;
+}
+.Home .event p {
+    text-align: center;
+    color: #3d3c3d;
+    margin-top: 4vh;
+    font-weight: 300;
+    font-size: 26.6px;
+    letter-spacing: 0.5px;
+}
+.Home .event p .link {
+    text-decoration: none;
+    color:  #009FD4;
+}
+.Home .event .eventDates {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: calc(100% - 4vh - 4vh - 26.6px - 42px);
+}
+.Home .event .eventDates .eventContainer {
+    width: 25vw;
+    height: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.Home .event .eventDates .eventContainer h2 {
+    padding-top: 10vh;
+    text-align: center;
+    font-weight: 300;
+    font-size: 19.6px;
+}
+.Home .event .eventDates .eventContainer h3 {
+    text-align: center;
+    font-weight: 300;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: -20px;
+}
+.Home .event .eventDates .eventContainer .changeText {
+    text-align: center;
+    font-weight: 300;
+    font-size: 20px;
+}
+.Home .teamGlance {
+    width: 100vw;
+    height: 50vh;
+}
+.Home .aboutUs {
+    width: 100vw;
+    height: 50vh;
+}
+.Home .hero {
+    height: 100vh;
+    width: 100vw;   
+}
+.Home .hero .heroContainer {
+    width: 40vw;
+    padding-top: 40vh;
+    padding-left: 10vw;
+}
+.Home .hero .heroContainer h1 {
+    color:#3d3c3d;
+    font-size: 70px;
+}
+.Home .hero .heroContainer p {
+    color:#3d3c3d;
+    font-size: 20px;
+}
+.Home .hero .heroContainer a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 30px;
+    background-color:  #009FD4;
+}
+.Home .hero .heroContainer a:hover {
+    background-color:  #0088b5;
+}
