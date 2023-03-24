@@ -101,9 +101,6 @@ function Sidebar(props) {
             <a href='#sponsorGui'><button className='Sponsors' onClick={()=>{ changePage('Sponsors') }}><MdBusinessCenter className='icon'/>{ Sponsor.current }</button></a>
             <a href='#contactGui'><button className='Contact' onClick={() => { changePage('Contact') }}><MdOutlineEmail className='icon'/>{ contact.current }</button></a>
             <a href='#joinGui'><button className='Join' onClick={() => { changePage('Join') }}><MdOutlineHandshake className='icon'/>{ Join.current }</button></a>
-            <button className='SignOut' onClick={() => { 
-              Axios.post(link + "/api/post/logout");  
-            }}><FaSignOutAlt className='icon'/>{ logOut.current }</button>
         </div>
         <div className='button'>
             <button className='SidebarShifter' onClick={ changeSideBar }>{ arrow.current }</button>
