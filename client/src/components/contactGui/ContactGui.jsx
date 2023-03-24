@@ -3,6 +3,8 @@ import { useState } from 'react'
 import Axios from 'axios'
 import './contactGui.css'
 
+const link = "https://illinoisroboticsinspacebackend.onrender.com";
+
 function ContactGui() {
     const [youtube, changeYoutube] = useState("");
     const [instagram, changeInstagram] = useState("");
@@ -13,7 +15,7 @@ function ContactGui() {
 
     const uploadInstagram = (e) => {
         e.preventDefault();
-        Axios.post("https://illinoisroboticsinspacebackend.onrender.com/api/post/instagram", JSON.stringify({ 
+        Axios.post(link + "/api/post/instagram", JSON.stringify({ 
             link: instagram,
           }), {
             headers: {
@@ -24,7 +26,7 @@ function ContactGui() {
 
     const uploadYoutube = (e) => {
         e.preventDefault();
-        Axios.post("https://illinoisroboticsinspacebackend.onrender.com/api/post/youtube", JSON.stringify({ 
+        Axios.post(link + "/api/post/youtube", JSON.stringify({ 
             link: youtube,
           }), {
             headers: {
@@ -35,7 +37,7 @@ function ContactGui() {
 
     const uploadTwitter = (e) => {
         e.preventDefault();
-        Axios.post("https://illinoisroboticsinspacebackend.onrender.com/api/post/twitter", JSON.stringify({ 
+        Axios.post(link + "/api/post/twitter", JSON.stringify({ 
             link: twitter,
           }), {
             headers: {
@@ -46,7 +48,7 @@ function ContactGui() {
 
     const uploadFacebook = (e) => {
         e.preventDefault();
-        Axios.post("https://illinoisroboticsinspacebackend.onrender.com/api/post/facebook", JSON.stringify({ 
+        Axios.post(link + "/api/post/facebook", JSON.stringify({ 
             link: facebook,
           }), {
             headers: {
@@ -57,7 +59,7 @@ function ContactGui() {
 
     const uploadGmail = (e) => {
         e.preventDefault();
-        Axios.post("https://illinoisroboticsinspacebackend.onrender.com/api/post/gmail", JSON.stringify({ 
+        Axios.post(link + "/api/post/gmail", JSON.stringify({ 
             link: gmail,
           }), {
             headers: {
@@ -68,7 +70,7 @@ function ContactGui() {
 
     const uploadSlack = (e) => {
         e.preventDefault();
-        Axios.post("https://illinoisroboticsinspacebackend.onrender.com/api/post/slack", JSON.stringify({ 
+        Axios.post(link + "/api/post/slack", JSON.stringify({ 
             link: slack,
           }), {
             headers: {

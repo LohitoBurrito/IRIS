@@ -3,6 +3,8 @@ import { useState } from 'react'
 import Axios from 'axios'
 import './joinGui.css'
 
+const link = "https://illinoisroboticsinspacebackend.onrender.com";
+
 function JoinGui() {
     const [content, setContent] = useState("");
     const [question, setQuestion] = useState("");
@@ -14,7 +16,7 @@ function JoinGui() {
 
     const changeDesc = (e) => {
         e.preventDefault();
-        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/addJoin', JSON.stringify({ content: content }),  {
+        Axios.post(link + '/api/post/addJoin', JSON.stringify({ content: content }),  {
             headers: {
               'Content-Type': 'application/json'
             }
@@ -24,7 +26,7 @@ function JoinGui() {
     }
     const addQuestion = (e) => {
         e.preventDefault();
-        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/addQuestion', JSON.stringify({ question: question }), {
+        Axios.post(link + '/api/post/addQuestion', JSON.stringify({ question: question }), {
             headers: {
               'Content-Type': 'application/json'
             }
@@ -34,7 +36,7 @@ function JoinGui() {
     }
     const deleteQuestion = (e) => {
         e.preventDefault();
-        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/deleteQuestion', JSON.stringify({ question: delQuestion }), {
+        Axios.post(link + '/api/post/deleteQuestion', JSON.stringify({ question: delQuestion }), {
             headers: {
               'Content-Type': 'application/json'
             }

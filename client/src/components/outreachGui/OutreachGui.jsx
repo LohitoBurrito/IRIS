@@ -3,6 +3,8 @@ import { useState } from 'react'
 import Axios from 'axios'
 import './outreachGui.css'
 
+const link = "https://illinoisroboticsinspacebackend.onrender.com";
+
 function OutreachGui() {
     const [desc, setDesc] = useState("");
     const [title, setTitle] = useState("");
@@ -25,7 +27,7 @@ function OutreachGui() {
         formdata.append("zoom", zoom);
         formdata.append("width", width);
         formdata.append("filename", "images/" + filename.name)
-        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/addOutreach', formdata, {
+        Axios.post(link + '/api/post/addOutreach', formdata, {
             headers: {
                 "Content-Type":"multipart/form-data"
             }
@@ -34,7 +36,7 @@ function OutreachGui() {
 
     const deleteOutreach = (e) => {
         e.preventDefault();
-        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/deleteOutreach', JSON.stringify({ 
+        Axios.post(link + '/api/post/deleteOutreach', JSON.stringify({ 
             outreachTitle: deleteTitle
         }), {
             headers: {

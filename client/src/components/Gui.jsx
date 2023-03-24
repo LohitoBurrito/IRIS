@@ -18,6 +18,8 @@ const sideBar3Dark = {
   marginLeft: '17.5vw'
 }
 
+const link = "https://illinoisroboticsinspacebackend.onrender.com";
+
 function GuiPage() {
   const [contentStyle, setContentStyle] = useState(sideBar3Dark);
 
@@ -44,7 +46,7 @@ function Gui() {
 
   const checkPassword = (e) => {
     e.preventDefault();
-    Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/login', JSON.stringify({ password: password }), {
+    Axios.post(link + '/api/post/login', JSON.stringify({ password: password }), {
       headers: {
         'Content-Type': 'application/json'
       }

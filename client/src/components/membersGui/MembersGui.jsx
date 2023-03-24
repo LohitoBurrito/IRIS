@@ -3,6 +3,8 @@ import Axios from 'axios'
 import { useState } from 'react'
 import './membersGui.css'
 
+const link = "https://illinoisroboticsinspacebackend.onrender.com";
+
 function MembersGui() {
     const [name, setName] = useState("");
     const [deleteName, setDeleteName] = useState("");
@@ -27,7 +29,7 @@ function MembersGui() {
         formdata.append("yPos", y);
         formdata.append("Zoom", zoom);
         formdata.append("filename", "images/" + filename.name)
-        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/addMember', formdata, {
+        Axios.post(link + '/api/post/addMember', formdata, {
             headers: {
                 "Content-Type":"multipart/form-data"
             }
@@ -35,7 +37,7 @@ function MembersGui() {
     }
     const deleteMember = (e) => {
         e.preventDefault();
-        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/deleteMember', JSON.stringify({ 
+        Axios.post(link + '/api/post/deleteMember', JSON.stringify({ 
             memberName: deleteName
         }), {
             headers: {

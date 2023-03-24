@@ -3,6 +3,8 @@ import Axios from 'axios'
 import { useState } from 'react'
 import './sponsorGui.css'
 
+const link = "http://localhost:4000"
+
 function SponsorGui() {
     const [filename, uploadFilename] = useState("");
     const [title, changeTitle] = useState('');
@@ -21,12 +23,12 @@ function SponsorGui() {
                 "Content-Type":"multipart/form-data"
             }
         }
-        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/addSponsor', formdata, config);
+        Axios.post(link + '/api/post/addSponsor', formdata, config);
     }
 
     const deleteFile = (e) => {
         e.preventDefault();
-        Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/deleteSponsor', JSON.stringify({ 
+        Axios.post(link + '/api/post/deleteSponsor', JSON.stringify({ 
             title: deleteTitle,
           }), {
             headers: {

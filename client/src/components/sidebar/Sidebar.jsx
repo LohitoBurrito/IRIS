@@ -31,6 +31,8 @@ const sideBar4Dark = {
   marginLeft: '7.75vw'
 }
 
+const link = "https://illinoisroboticsinspacebackend.onrender.com";
+
 function Sidebar(props) {
   const [Page, setPage] = useState('Home');
   const [sideBarOpen, setSidebarOpen] = useState(sideBar1Dark);
@@ -100,7 +102,7 @@ function Sidebar(props) {
             <a href='#contactGui'><button className='Contact' onClick={() => { changePage('Contact') }}><MdOutlineEmail className='icon'/>{ contact.current }</button></a>
             <a href='#joinGui'><button className='Join' onClick={() => { changePage('Join') }}><MdOutlineHandshake className='icon'/>{ Join.current }</button></a>
             <button className='SignOut' onClick={() => { 
-              Axios.post("https://illinoisroboticsinspacebackend.onrender.com/api/post/logout");  
+              Axios.post(link + "/api/post/logout");  
             }}><FaSignOutAlt className='icon'/>{ logOut.current }</button>
         </div>
         <div className='button'>

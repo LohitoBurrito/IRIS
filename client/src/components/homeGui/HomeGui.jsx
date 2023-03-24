@@ -3,6 +3,8 @@ import Axios from 'axios'
 import { useState } from 'react'
 import './homeGui.css'
 
+const link = "https://illinoisroboticsinspacebackend.onrender.com";
+
 function HomeGui() {
     const [newAboutUs, setVal] = useState("");
     const [newTeamGlance, setVal2] = useState("");
@@ -18,7 +20,7 @@ function HomeGui() {
     const handleSubmit = (e) => {
       e.preventDefault();
       // Post Request to About Us
-      Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/about', JSON.stringify({ Id: newAboutUs }), {
+      Axios.post(link + '/api/post/about', JSON.stringify({ Id: newAboutUs }), {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -28,7 +30,7 @@ function HomeGui() {
     const handleSubmit2 = (e) => {
       e.preventDefault();
       // Post Request to Our Team at a Glance
-      Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/teamGlance', JSON.stringify({ Id: newTeamGlance }), {
+      Axios.post(link + '/api/post/teamGlance', JSON.stringify({ Id: newTeamGlance }), {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -38,7 +40,7 @@ function HomeGui() {
     const handleSubmit3 = (e) => {
       e.preventDefault();
       // Post Request to Team Event
-      Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/addteamEvents', JSON.stringify({ 
+      Axios.post(link + '/api/post/addteamEvents', JSON.stringify({ 
         title: teamEventName,
         desc: teamEventDesc
       }), {
@@ -51,7 +53,7 @@ function HomeGui() {
     const handleSubmit4 = (e) => {
       e.preventDefault();
       // Post Request to Team Event
-      Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/addDemos', JSON.stringify({ 
+      Axios.post(link + '/api/post/addDemos', JSON.stringify({ 
         title: demosName,
         desc: demosDesc
       }), {
@@ -64,7 +66,7 @@ function HomeGui() {
     const handleSubmit5 = (e) => {
       e.preventDefault();
       // Post Request to Team Event
-      Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/deleteteamEvents', JSON.stringify({ 
+      Axios.post(link + '/api/post/deleteteamEvents', JSON.stringify({ 
         title: eventNameDel,
       }), {
         headers: {
@@ -75,7 +77,7 @@ function HomeGui() {
     const handleSubmit6 = (e) => {
       e.preventDefault();
       // Post Request to Team Event
-      Axios.post('https://illinoisroboticsinspacebackend.onrender.com/api/post/deleteDemosOutreach', JSON.stringify({ 
+      Axios.post(link + '/api/post/deleteDemosOutreach', JSON.stringify({ 
         title: demosNameDel,
       }), {
         headers: {
