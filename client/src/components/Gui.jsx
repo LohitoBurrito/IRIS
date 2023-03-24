@@ -69,7 +69,7 @@ function Gui() {
                     changePassword(e.target.value);
                   }}/>
                   <br/><br/>
-                  <button onClick={() => {console.log(state)}}>Enter Password</button>
+                  <button onClick={() => {console.log("Work Ples")}}>Enter Password</button>
                 </form>
               </div>
             </div>
