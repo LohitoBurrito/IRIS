@@ -18,6 +18,7 @@ const sideBar3Dark = {
   marginLeft: '17.5vw'
 }
 
+
 const link = "https://illinoisroboticsinspacebackend.onrender.com";
 
 function GuiPage() {
@@ -43,6 +44,7 @@ function GuiPage() {
 
 function Gui() {
   const [password, changePassword] = useState("");
+  const [val, setVal] = useState();
 
   const checkPassword = (e) => {
     e.preventDefault();
@@ -51,7 +53,9 @@ function Gui() {
         'Content-Type': 'application/json'
       }
     })
-    .then(res2 => console.log(res2))
+    .then(res => {
+      console.log(res)
+    })
     .catch(err => console.log(err));
   }
 
@@ -69,7 +73,7 @@ function Gui() {
                     changePassword(e.target.value);
                   }}/>
                   <br/><br/>
-                  <button onClick={() => {console.log(state.login)}}>Enter Password</button>
+                  <button>Enter Password</button>
                 </form>
               </div>
             </div>

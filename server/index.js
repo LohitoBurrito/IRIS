@@ -51,6 +51,7 @@ app.post("/api/post/login", (req, res) => {
                 console.log('File Successfully written!');
             }
         });
+        res.send(true);
     } else {
         console.log("Wrong Password");
         const newObject = [{
@@ -63,6 +64,7 @@ app.post("/api/post/login", (req, res) => {
                 console.log('File Successfully written!');
             }
         });
+        res.send(false);
     }
 });
 
