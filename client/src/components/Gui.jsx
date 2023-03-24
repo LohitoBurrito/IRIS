@@ -44,7 +44,13 @@ function GuiPage() {
 
 function Gui() {
   const [password, changePassword] = useState("");
-  const [val, setVal] = useState();
+  const [val, setVal] = useState(
+    [
+      {
+        "login" : false
+      }
+    ]
+  )
 
   const checkPassword = (e) => {
     e.preventDefault();
@@ -54,7 +60,24 @@ function Gui() {
       }
     })
     .then(res => {
-      console.log(res)
+      console.log(res);
+      if (res.data) {
+        setVal(
+          [
+            {
+              "login" : true
+            }
+          ]
+        )
+      } else {
+        setVal(
+          [
+            {
+              "login" : false
+            }
+          ]
+        )
+      }
     })
     .catch(err => console.log(err));
   }
@@ -62,7 +85,7 @@ function Gui() {
   return (
   <>
     {
-      loggedInStatus.map(state => {
+      val.map(state => {
         if (!state.login) {
           return (
             <div className='loginPage'>
