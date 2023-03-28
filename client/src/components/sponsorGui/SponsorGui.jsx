@@ -3,7 +3,8 @@ import Axios from 'axios'
 import { useState } from 'react'
 import './sponsorGui.css'
 
-const link = "http://localhost:4000"
+const link = "http://localhost:4000";
+//const link = "https://illinoisroboticsinspacebackend.onrender.com";
 
 function SponsorGui() {
     const [filename, uploadFilename] = useState("");
@@ -16,7 +17,6 @@ function SponsorGui() {
         const formdata = new FormData();
         formdata.append("file", filename);
         formdata.append("title", title);
-        formdata.append("fileName", "images/" + filename.name);
         formdata.append("sponsorType", sponsorType);
         const config = {
             headers: {

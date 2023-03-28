@@ -4,10 +4,8 @@ import { BiHomeAlt } from 'react-icons/bi';
 import { HiArrowSmRight, HiArrowSmLeft } from 'react-icons/hi'
 import { FiMapPin } from 'react-icons/fi'
 import { MdOutlineHandshake, MdOutlineEmail, MdBusinessCenter } from 'react-icons/md'
-import { FaSignOutAlt } from 'react-icons/fa'
 import { BsCalendarEvent, BsPeopleFill } from 'react-icons/bs'
 import { RiRocket2Line } from 'react-icons/ri'
-import Axios from 'axios'
 import './sidebar.css'
 
 const sideBar1Dark = {
@@ -30,8 +28,6 @@ const sideBar4Dark = {
   backgroundColor : '#161818',
   marginLeft: '7.75vw'
 }
-
-const link = "https://illinoisroboticsinspacebackend.onrender.com";
 
 function Sidebar(props) {
   const [Page, setPage] = useState('Home');

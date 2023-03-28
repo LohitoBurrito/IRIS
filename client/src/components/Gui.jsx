@@ -9,7 +9,6 @@ import CalendarGui from './calendar/CalendarGui'
 import SponsorGui from './sponsorGui/SponsorGui'
 import ContactGui from './contactGui/ContactGui'
 import JoinGui from './joinGui/JoinGui'
-import loggedInStatus from '../data/loggedIn.json'
 import './gui.css'
 
 const sideBar3Dark = {

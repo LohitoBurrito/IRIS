@@ -1,7 +1,6 @@
 import React from 'react'
 import Navbar from '../navbar/Navbar'
 import Footer from '../footer/Footer'
-import outreaches from '../../data/outreach.json'
 import './outreach.css'
 
 function OutreachCardL({title, desc, picture, x, y, zoom, width}) {
@@ -48,13 +47,6 @@ function Outreach() {
       <h1>Outreach</h1>
       <hr/>
       <div className='allCards'>
-        {
-          outreaches.map(outreach => {
-            return (
-              <OutreachCardL key={outreach.title} title={outreach.title} desc={outreach.desc} picture={outreach.fileData} x={outreach.x} y={outreach.y} zoom={outreach.zoom} width={outreach.width}/>
-            )
-          })
-        }
       </div>
       <Footer/>
     </div>

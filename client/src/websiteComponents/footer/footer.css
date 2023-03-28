@@ -4,6 +4,7 @@
     background-color: #f4f5f5;
     display: flex;
     justify-content: center;
+    margin-top: 75px;
 }
 .footer .footerBox {
     width: 25vw;

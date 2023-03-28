@@ -1,7 +1,6 @@
 import React from 'react'
 import Navbar from '../navbar/Navbar'
 import Footer from '../footer/Footer'
-import sponsors from '../../data/sponsor.json'
 import './sponsor.css'
 
 function SponsorImage({url}) {
@@ -30,27 +29,11 @@ function Sponsor() {
       <br/><br/><br/>
       <h2>Star Sponsors</h2>
       <div className='sponsorCards'>
-        {
-          sponsors.map(sponsor => {
-              if (sponsor.sponsorType == "star") {
-                return (
-                  <SponsorImage url={sponsor.filename}/>
-                )
-              }
-          })
-        }
+
       </div>
       <h2>Planet Sponsors</h2>
       <div className='sponsorCards'>
-        {
-          sponsors.map(sponsor => {
-              if (sponsor.sponsorType == "planet") {
-                return (
-                  <SponsorImage url={sponsor.filename}/>
-                )
-              }
-          })
-        }
+
       </div>
       <br/>
       <Footer/>

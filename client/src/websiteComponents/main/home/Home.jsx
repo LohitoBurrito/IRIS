@@ -1,9 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import teamEvents from '../../../data/teamEvents.json'
-import demos from '../../../data/demos.json'
-import aboutUs from '../../../data/aboutUs.json'
-import teamGlance from '../../../data/ourTeamAtAGlance.json'
 import './home.css'
 
 
@@ -19,31 +15,11 @@ function Event() {
       </div>
       <div className="eventContainer">
         <h2>Team Events:</h2>
-          {
-            teamEvents.map(teamEvent => {
-              return (
-                <div style={{
-                  marginBottom:"20px"
-                }}>
-                  <h3>{teamEvent.title}</h3>
-                  <p className='changeText'>{teamEvent.desc}</p>
-                </div>
-              )
-            })
-          }
+
       </div>
       <div className="eventContainer">
         <h2>Demos and Outreach:</h2>
-        {
-          demos.map(demo => {
-            return (
-              <>
-                <h3>{demo.title}</h3>
-                <p className='changeText'>{demo.desc}</p>
-              </>
-            )
-          })
-        }
+
       </div>
     </div>
     </div>
@@ -57,19 +33,7 @@ function AboutUs() {
       paddingRight:"20px"
     }}>
       <h1>Who we are</h1>
-      {
-        aboutUs.map(text => {
-          return (
-            <p style={{
-              textAlign: "center",
-              fontSize: "30px",
-              marginTop: "20px",
-              fontWeight: "300",
-              color: "#3d3c3d"
-            }}>{text.desc}</p>
-          )
-        })
-      }
+
     </div>
   )
 }
@@ -81,19 +45,6 @@ function TeamGlance() {
       paddingRight:"20px"
     }}>
       <h1>Our Team at a Glance</h1>
-      {
-        teamGlance.map(text => {
-          return (
-            <p style={{
-              textAlign: "center",
-              fontSize: "30px",
-              marginTop: "20px",
-              fontWeight: "300",
-              color: "#3d3c3d"
-            }}>{text.desc}</p>
-          )
-        })
-      }
     </div>
   )
 }

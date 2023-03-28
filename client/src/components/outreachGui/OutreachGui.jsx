@@ -3,18 +3,19 @@ import { useState } from 'react'
 import Axios from 'axios'
 import './outreachGui.css'
 
-const link = "https://illinoisroboticsinspacebackend.onrender.com";
+const link = "http://localhost:4000";
+//const link = "https://illinoisroboticsinspacebackend.onrender.com";
 
 function OutreachGui() {
     const [desc, setDesc] = useState("");
     const [title, setTitle] = useState("");
-    const [filedata, setFileData] = useState(null);
     const [filename, setFileName] = useState("");
     const [x, setX] = useState("0");
     const [y, setY] = useState("0");
     const [zoom, setZoom] = useState("100");
     const [width, setWidth] = useState("500");
     const [deleteTitle, setDeleteTitle] = useState("");
+    const [filedata, setFileData] = useState(null);
 
     const addOutreach = (e) => {
         e.preventDefault();
@@ -26,7 +27,6 @@ function OutreachGui() {
         formdata.append("y", y);
         formdata.append("zoom", zoom);
         formdata.append("width", width);
-        formdata.append("filename", "images/" + filename.name)
         Axios.post(link + '/api/post/addOutreach', formdata, {
             headers: {
                 "Content-Type":"multipart/form-data"

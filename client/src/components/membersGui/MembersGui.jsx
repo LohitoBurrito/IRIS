@@ -3,7 +3,8 @@ import Axios from 'axios'
 import { useState } from 'react'
 import './membersGui.css'
 
-const link = "https://illinoisroboticsinspacebackend.onrender.com";
+const link = "http://localhost:4000"
+//const link = "https://illinoisroboticsinspacebackend.onrender.com";
 
 function MembersGui() {
     const [name, setName] = useState("");
@@ -14,13 +15,15 @@ function MembersGui() {
     const [x, setX] = useState("0");  
     const [y, setY] = useState("0");
     const [zoom, setZoom] = useState("100");   
-    const [fileData, setFileData] = useState(null);
     const [filename, setfilename] = useState("");
+    const [fileData, setFileData] = useState(null);
 
     const submitMember = (e) => {
+        console.log("add data");
         e.preventDefault();
         const formdata = new FormData();
-        formdata.append("file", filename);
+        formdata.append("file", fileData);
+        formdata.append("filename", filename);
         formdata.append("memberName", name);
         formdata.append("role",jobTitle);
         formdata.append("description",desc);
@@ -28,12 +31,13 @@ function MembersGui() {
         formdata.append("xPos", x);
         formdata.append("yPos", y);
         formdata.append("Zoom", zoom);
-        formdata.append("filename", "images/" + filename.name)
+        console.log(filename);
         Axios.post(link + '/api/post/addMember', formdata, {
             headers: {
                 "Content-Type":"multipart/form-data"
             }
         }).then(res2 => console.log(res2)).catch(err => console.log(err));
+        
     }
     const deleteMember = (e) => {
         e.preventDefault();
@@ -68,6 +72,7 @@ function MembersGui() {
                         const reader = new FileReader();
                         reader.onloadend = () => {
                             setFileData(reader.result)
+                            console.log(reader.result)
                         }
                         reader.readAsDataURL(e.target.files[0]);
                     }}/>
