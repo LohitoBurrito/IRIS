@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '/.env' });
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage})
 
 //Mongoose
-mongoose.connect(process.env.Mongo_URI, {
+mongoose.connect("mongodb+srv://LohitoBurrito:Momuloda2603@cluster0.jmt7gkg.mongodb.net/IRIS?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
