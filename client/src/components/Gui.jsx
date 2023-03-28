@@ -18,7 +18,7 @@ const sideBar3Dark = {
 }
 
 
-const link = "https://illinoisroboticsinspacebackend.onrender.com";
+const link = process.env.REACT_APP_API_URL;
 
 function GuiPage() {
   const [contentStyle, setContentStyle] = useState(sideBar3Dark);

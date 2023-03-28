@@ -5,20 +5,7 @@ import Navbar from '../navbar/Navbar'
 import Footer from '../footer/Footer'
 import Axios from 'axios'
 
-
-/*
-<div className='pictureContainer2' style={{
-              width: "150px",
-              height: "100%",
-              backgroundSize: zoom + "%",
-              marginTop: "20px",
-              borderRadius: "100px",
-              backgroundPosition:  x + "px" + " " + y + "px",
-              backgroundImage: "url(" + picture + ")"
-        }}>
-        </div>
-*/
-const link = "http://localhost:4000"
+const link = process.env.REACT_APP_API_URL;
 
 function Card({name, role, picture, desc, link, zoom, x, y}) {
   return (
