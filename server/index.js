@@ -1,3 +1,4 @@
+require('dotenv').config({ path: '/.env' });
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -5,10 +6,6 @@ const fs = require('fs');
 const multer = require('multer');
 const mongoose = require('mongoose');
 const MembersModel = require('./models/MembersModel');
-
-
-
-require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());
