@@ -5,7 +5,7 @@ import Navbar from '../navbar/Navbar'
 import Footer from '../footer/Footer'
 import Axios from 'axios'
 
-const link = process.env.REACT_APP_API_URL;
+const link = "https://illinoisroboticsinspacebackend.onrender.com";
 
 function Card({name, role, picture, desc, link, zoom, x, y}) {
   return (

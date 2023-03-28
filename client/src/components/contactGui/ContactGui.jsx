@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Axios from 'axios'
 import './contactGui.css'
 
-const link = process.env.REACT_APP_API_URL;
+const link = "https://illinoisroboticsinspacebackend.onrender.com";
 
 function ContactGui() {
     const [youtube, changeYoutube] = useState("");
