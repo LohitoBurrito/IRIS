@@ -30,29 +30,11 @@ function Event() {
       </div>
       <div className="eventContainer">
         <h2>Team Events:</h2>
-        {
-          events.map((event) => {
-            return (
-              <>
-                <p>{event.eventDesc}</p>
-                <br/>
-              </>
-            )
-          })
-        }
+
       </div>
       <div className="eventContainer">
         <h2>Demos and Outreach:</h2>
-        {
-          demos.map((demo) => {
-            return (
-              <>
-                <p>{demo.demosDesc}</p>
-                <br/>
-              </>
-            )
-          })
-        }
+
       </div>
     </div>
     </div>
@@ -70,13 +52,7 @@ function AboutUs() {
       paddingRight:"20px"
     }}>
       <h1>Who we are</h1>
-      {
-        aboutUs.map((about) => {
-          return (
-            <p>{about.aboutUsDesc}</p>
-          )
-        })
-      }
+
     </div>
   )
 }
