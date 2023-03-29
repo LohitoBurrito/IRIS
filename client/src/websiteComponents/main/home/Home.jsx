@@ -1,9 +1,24 @@
 import React from 'react'
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
+import Axios from 'axios'
 import './home.css'
 
+const link = "https://illinoisroboticsinspacebackend.onrender.com";
 
 function Event() {
+  const [demos, setDemos] = useState("");
+  const [events, setEvents] = useState("");
+
+  useEffect(() => {
+    Axios.get(link + '/api/get/teamEvents').then(res => {
+      setEvents(res.data);
+    });
+    Axios.get(link + '/api/get/demos').then(res => {
+      setDemos(res.data);
+    });
+  },[]);
+
   return (
     <div className='event'>
     <h1>Upcoming Events</h1>
@@ -15,11 +30,29 @@ function Event() {
       </div>
       <div className="eventContainer">
         <h2>Team Events:</h2>
-
+        {
+          events.map((event) => {
+            return (
+              <>
+                <p>{event.eventDesc}</p>
+                <br/>
+              </>
+            )
+          })
+        }
       </div>
       <div className="eventContainer">
         <h2>Demos and Outreach:</h2>
-
+        {
+          demos.map((demo) => {
+            return (
+              <>
+                <p>{demo.demosDesc}</p>
+                <br/>
+              </>
+            )
+          })
+        }
       </div>
     </div>
     </div>
@@ -27,13 +60,23 @@ function Event() {
 }
 
 function AboutUs() {
+  const [aboutUs, setAboutUs] = useState("");
+  Axios.get(link + '/api/get/about').then(res => {
+    setAboutUs(res.data);
+  });
   return (
     <div id="about" className='aboutUs' style={{
       paddingLeft:"20px",
       paddingRight:"20px"
     }}>
       <h1>Who we are</h1>
-
+      {
+        aboutUs.map((about) => {
+          return (
+            <p>{about.aboutUsDesc}</p>
+          )
+        })
+      }
     </div>
   )
 }
