@@ -63,7 +63,7 @@ app.post("/api/post/addMember", upload.single('filename'), async (req, res) => {
     }
 });
 app.post("/api/post/deleteMember", (req, res) => {
-
+    MembersModel.deleteMany({MemberName: req.body.memberName});
 });
 
 //Login post request
