@@ -62,8 +62,8 @@ app.post("/api/post/addMember", upload.single('filename'), async (req, res) => {
         console.log(err)
     }
 });
-app.post("/api/post/deleteMember", (req, res) => {
-    IRIS.members.deleteMany({MemberName: req.body.memberName});
+app.post("/api/post/deleteMember", async (req, res) => {
+    await MembersModel.deleteMany({MemberName: req.body.memberName});
     res.send("deleted " + req.body.memberName);
 });
 
