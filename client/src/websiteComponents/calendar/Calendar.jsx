@@ -5,11 +5,13 @@ import { useState, useEffect } from 'react'
 import Axios from 'axios'
 import './calendar.css'
 
+const link = "https://illinoisroboticsinspacebackend.onrender.com";
+
 function Calendar() {
   const [calendar, setCalendar] = useState("");
 
   useEffect(() => {
-    Axios.get("http://localhost:4000/api/get/getCalendar").then((response) => {
+    Axios.get(link + "/api/get/getCalendar").then((response) => {
       console.log(response.data[0].CalendarLink)
       setCalendar(response.data[0].CalendarLink)
     });
