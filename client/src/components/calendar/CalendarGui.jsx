@@ -26,7 +26,7 @@ function CalendarGui() {
             <form onSubmit={ handleSubmit }>
                 <input type="text" 
                        className='format' 
-                       placeholder='enter calendar here format: https://calendar.google.com/calendar/u/0/embed?=aXJpcy51aXVjQGdtYWlsLmNvbQ'
+                       placeholder='enter calendar link'
                        onChange={(e) => {setCalendar(e.target.value)}}
                 />
                 <br/><br/>
