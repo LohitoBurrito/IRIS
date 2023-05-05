@@ -16,7 +16,7 @@ function ContactGui() {
 
     const uploadInstagram = (e) => {
         e.preventDefault();
-        Axios.post(link + "/api/post/instagram", JSON.stringify({ 
+        Axios.put(link + "/api/put/instagram", JSON.stringify({ 
             link: instagram,
           }), {
             headers: {
@@ -27,7 +27,7 @@ function ContactGui() {
 
     const uploadYoutube = (e) => {
         e.preventDefault();
-        Axios.post(link + "/api/post/youtube", JSON.stringify({ 
+        Axios.put(link + "/api/put/youtube", JSON.stringify({ 
             link: youtube,
           }), {
             headers: {
@@ -38,7 +38,7 @@ function ContactGui() {
 
     const uploadTwitter = (e) => {
         e.preventDefault();
-        Axios.post(link + "/api/post/twitter", JSON.stringify({ 
+        Axios.put(link + "/api/put/twitter", JSON.stringify({ 
             link: twitter,
           }), {
             headers: {
@@ -49,7 +49,7 @@ function ContactGui() {
 
     const uploadFacebook = (e) => {
         e.preventDefault();
-        Axios.post(link + "/api/post/facebook", JSON.stringify({ 
+        Axios.put(link + "/api/put/facebook", JSON.stringify({ 
             link: facebook,
           }), {
             headers: {
@@ -60,7 +60,7 @@ function ContactGui() {
 
     const uploadGmail = (e) => {
         e.preventDefault();
-        Axios.post(link + "/api/post/gmail", JSON.stringify({ 
+        Axios.put(link + "/api/put/gmail", JSON.stringify({ 
             link: gmail,
           }), {
             headers: {
@@ -71,7 +71,7 @@ function ContactGui() {
 
     const uploadSlack = (e) => {
         e.preventDefault();
-        Axios.post(link + "/api/post/slack", JSON.stringify({ 
+        Axios.put(link + "/api/put/slack", JSON.stringify({ 
             link: slack,
           }), {
             headers: {
