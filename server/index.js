@@ -7,6 +7,7 @@ const multer = require('multer');
 const mongoose = require('mongoose');
 const MembersModel = require('./models/MembersModel');
 const CalendarModel = require('./models/CalendarModel');
+const ContactModel = require('./models/ContactsModel')
 const AboutUsModel = require('./models/Homepage/aboutUsModel');
 const DemosModel = require('./models/Homepage/demosModel');
 const TeamAtAGlanceModel = require('./models/Homepage/teamAtAGlanceModel');
@@ -103,13 +104,34 @@ app.post("/api/post/setCalendar", async (req,res) => {
 
 
 /*<----------------- Contact API request -------------------> */
+app.get("/api/get/contactData", async (req, res) => {
+    res.send(await ContactModel.find({}))
+});
+app.post("/api/post/gmail", async (req, res) => {
+    await ContactModel.updateOne({"val": 0},{ $set: { "Gmail": req.body.link, "val": 0 }},{ upsert: true })
+});
+app.post("/api/post/facebook", async (req, res) => {
+    await ContactModel.updateOne({"val": 0},{ $set: { "Facebook": req.body.link, "val": 0 }},{ upsert: true }) 
+});
+app.post("/api/post/slack", async (req, res) => {
+    await ContactModel.updateOne({"val": 0},{ $set: { "Slack": req.body.link, "val": 0 }},{ upsert: true }) 
+});
+app.post("/api/post/instagram", async (req, res) => {
+    await ContactModel.updateOne({"val": 0},{ $set: { "Instagram": req.body.link, "val": 0 }},{ upsert: true })
+});
+app.post("/api/post/youtube", async (req, res) => {
+    await ContactModel.updateOne({"val": 0},{ $set: { "Youtube": req.body.link, "val": 0 }},{ upsert: true }) 
+});
+app.post("/api/post/twitter", async (req, res) => {
+    await ContactModel.updateOne({"val": 0},{ $set: { "Twitter": req.body.link, "val": 0 }},{ upsert: true }) 
+});
 
 /*<----------------- Join API request -------------------> */
 
 /*<----------------- Login API request -------------------> */
 app.post("/api/post/login", (req, res) => {
     if (req.body.password === process.env.auth_key) {
-        console.log("Correct Paswword");
+        console.log("Correct Password");
         const newObject = [{
             "login" : true
         }]

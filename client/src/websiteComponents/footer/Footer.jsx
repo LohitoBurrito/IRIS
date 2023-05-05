@@ -4,8 +4,21 @@ import './footer.css'
 import { AiFillHeart } from 'react-icons/ai'
 import { BsInstagram, BsYoutube } from 'react-icons/bs'
 import { FaFacebookSquare, FaTwitterSquare } from 'react-icons/fa'
+import { useState, useEffect } from 'react'
+import Axios from 'axios'
+
+const link = "https://illinoisroboticsinspacebackend.onrender.com";
 
 function Footer() {
+  const [links, setLinks] = useState("");
+
+  useEffect(() => {
+    Axios.get(link + "/api/get/contactData").then((response) => { 
+      console.log(response.data[0]);
+      setLinks(response.data[0]);
+    })
+  },[])
+
   return (
     <div className='footer'>
         <div className='footerBox'>
@@ -14,16 +27,16 @@ function Footer() {
           </div>
           <div className='socials'>
             <div className='socialsContainer'>
-              <a href="https://www.instagram.com/iris.uiuc/"><BsInstagram/></a>
+              <a href={links.Instagram}><BsInstagram/></a>
             </div>
             <div className='socialsContainer'>
-              <a href="https://www.facebook.com/IllinoisRoboticsInSpace/"><FaFacebookSquare/></a>
+              <a href={links.Facebook}><FaFacebookSquare/></a>
             </div>
             <div className='socialsContainer'>
-              <a href="https://twitter.com/iris_uiuc?lang=en"><FaTwitterSquare/></a>
+              <a href={links.Twitter}><FaTwitterSquare/></a>
             </div>
             <div className='socialsContainer'>
-              <a href="https://www.youtube.com/@IRISUIUC"><BsYoutube/></a>
+              <a href={links.Youtube}><BsYoutube/></a>
             </div>
           </div>
           <div className='copyright'>
