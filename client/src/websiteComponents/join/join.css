@@ -48,7 +48,13 @@
     font-size: 50px;
     color: black;
 }
-.Questions {
+.Question {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: black;
+}
+.Answer {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 25px;
     font-weight: 300;

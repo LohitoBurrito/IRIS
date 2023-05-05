@@ -101,7 +101,7 @@ app.post("/api/post/setCalendar", async (req,res) => {
         console.log(err);
     }
 
-    console.log(await CalendarModel.find({}))
+    console.log(await CalendarModel.find({}));
 });
 
 
@@ -133,18 +133,28 @@ app.get("/api/get/getContent", async (req, res) => {
     res.send(await JoinContentModel.find({}));
 });
 app.get("/api/get/getFAQ", async (req, res) => {
-
+    res.send(await FAQModel.find({}))
 });
 app.put("/api/put/setContent", async (req, res) => {
     console.log(req.body.content)
     await JoinContentModel.updateOne({"val": 0},{ $set: { "val": 0, "Content": req.body.content }},{ upsert: true }) 
 });
 app.post("/api/post/addQuestion", async (req, res) => {
-
+    console.log(req.body);
+    const question = new FAQModel({
+        Question: req.body.question,
+        Answer: req.body.answer     
+    });
+    try {
+        await question.save();
+    } catch (err) {
+        console.log(err)
+    }
 });
-app.delete("/api/post/deleteQuestion/", async (req, res) => {
-
-})
+app.delete("/api/post/deleteQuestion/:id", async (req, res) => {
+    await FAQModel.deleteMany({ "Question": req.params.id });
+    console.log(req.params.id);
+});
 
 /*<----------------- Login API request -------------------> */
 app.post("/api/post/login", (req, res) => {

@@ -60,7 +60,7 @@ function JoinGui() {
             <form onSubmit={ addQuestion }> 
                 <textarea placeholder='enter question here to be added' value={ question } onChange={(e) => {setQuestion(e.target.value)}}></textarea>
                 <br/><br/>
-                <textarea placeholder='enter answer here to be added' value={ delQuestion } onChange={(e) => {setAnswer(e.target.value)}}></textarea>
+                <textarea placeholder='enter answer here to be added' value={ answer } onChange={(e) => {setAnswer(e.target.value)}}></textarea>
                 <br/><br/>
                 <button>Submit Question</button>
             </form>

@@ -10,11 +10,12 @@ const link = "https://illinoisroboticsinspacebackend.onrender.com";
 
 function Join() {
   var count = 0;
-
   const [joinContent, setJoinContent] = useState("");
+  const [faq, setFAQ] = useState([]);
 
   useEffect(() => {
     Axios.get(link + "/api/get/getContent").then((response) => { setJoinContent(response.data[0].Content) })
+    Axios.get(link + "/api/get/getFAQ").then((response) => { setFAQ(response.data) })
   },[])
 
   return (
@@ -27,7 +28,22 @@ function Join() {
       <br/><br/>
       <div className='QandA'>
         <div className='QandAcontainer'>
-          <p className='FAQ'>FAQ</p>
+          <p className='FAQ'>FAQ</p><br/><br/><br/>
+          {
+            faq.map((value) => {
+              count++;
+              console.log(value);
+              return (
+                <>
+                  <p className='Question'>{count}. {value.Question}</p>
+                  <br/>
+                  <p className='Answer'>{value.Answer}</p>
+                  <br/>
+                  <br/>
+                </>
+              )
+            })
+          }
         </div>
       </div>
       <br/><br/>
