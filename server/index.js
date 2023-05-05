@@ -6,6 +6,7 @@ const fs = require('fs');
 const multer = require('multer');
 const mongoose = require('mongoose');
 const MembersModel = require('./models/MembersModel');
+const CalendarModel = require('./models/CalendarModel');
 const AboutUsModel = require('./models/Homepage/aboutUsModel');
 const DemosModel = require('./models/Homepage/demosModel');
 const TeamAtAGlanceModel = require('./models/Homepage/teamAtAGlanceModel');
@@ -77,11 +78,27 @@ app.post("/api/post/deleteMember", async (req, res) => {
 /*<----------------- Homepage API request -------------------> */
 
 /*<----------------- Calendar API request -------------------> */
-app.post("/api/post/setCalendar", (req,res) => {
+app.get("/api/get/getCalendar", async (req, res) => {
+    res.send(await CalendarModel.find({}))
+});
+app.post("/api/post/setCalendar", async (req,res) => {
     var x = req.body.val;
-    x = x.replace("r?cid", "embed?");
+    x = x.replace("r?cid", "embed?src");
     console.log(x);
-    
+
+    await CalendarModel.deleteMany({});
+
+    const calendar = new CalendarModel({
+        CalendarLink: x
+    });
+
+    try {
+        await calendar.save();
+    } catch (err) {
+        console.log(err);
+    }
+
+    console.log(await CalendarModel.find({}))
 });
 
 
