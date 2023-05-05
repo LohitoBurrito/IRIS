@@ -130,19 +130,20 @@ app.put("/api/put/twitter", async (req, res) => {
 
 /*<----------------- Join API request -------------------> */
 app.get("/api/get/getContent", async (req, res) => {
-
+    res.send(await JoinContentModel.find({}));
 });
 app.get("/api/get/getFAQ", async (req, res) => {
 
 });
 app.put("/api/put/setContent", async (req, res) => {
-
+    console.log(req.body.content)
+    await JoinContentModel.updateOne({"val": 0},{ $set: { "val": 0, "Content": req.body.content }},{ upsert: true }) 
 });
 app.post("/api/post/addQuestion", async (req, res) => {
 
 });
 app.delete("/api/post/deleteQuestion/", async (req, res) => {
-    
+
 })
 
 /*<----------------- Login API request -------------------> */

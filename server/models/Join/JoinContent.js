@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const JoinContent = new mongoose.Schema({
+    val: {
+        type: Number,
+        require: true
+    },
     Content: {
         type: String,
         required: true

@@ -4,6 +4,7 @@ import Axios from 'axios'
 import './joinGui.css'
 
 const link = "https://illinoisroboticsinspacebackend.onrender.com";
+//const link = "http://localhost:4000"
 
 function JoinGui() {
     const [content, setContent] = useState("");
@@ -17,6 +18,7 @@ function JoinGui() {
 
     const changeDesc = (e) => {
         e.preventDefault();
+        console.log("BRUH");
         Axios.put(link + '/api/put/setContent', JSON.stringify({ content: content }),  {
             headers: {
               'Content-Type': 'application/json'
