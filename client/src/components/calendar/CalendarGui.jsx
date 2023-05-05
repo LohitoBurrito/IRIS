@@ -1,13 +1,34 @@
 import React from 'react'
+import Axios from 'axios'
+import { useState } from 'react'
 import './calendarGui.css'
 
+const calendarLink = "https://calendar.google.com/calendar/u/0/r?cid=aXJpcy51aXVjQGdtYWlsLmNvbQ"
+const link = "https://illinoisroboticsinspacebackend.onrender.com";
+
 function CalendarGui() {
+  const [calendar, setCalendar] = useState("https://calendar.google.com/calendar/u/0/embed?=aXJpcy51aXVjQGdtYWlsLmNvbQ");
+ 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    Axios.post("http://localhost:4000/api/post/setCalendar", JSON.stringify({val: calendar}), {
+      headers: {
+        'Content-Type': 'application/json',
+      }   
+    });
+  }
+  
+
   return (
     <div className='calendarGui' id='calendarGui'>
         <h1>Calendar</h1>
         <div className='forms2'>
-            <form>
-                <input type="text" className='format' placeholder='enter calendar here format: https://calendar.google.com/calendar/u/0/embed?=aXJpcy51aXVjQGdtYWlsLmNvbQ'/>
+            <form onSubmit={ handleSubmit }>
+                <input type="text" 
+                       className='format' 
+                       placeholder='enter calendar here format: https://calendar.google.com/calendar/u/0/embed?=aXJpcy51aXVjQGdtYWlsLmNvbQ'
+                       onChange={(e) => {setCalendar(e.target.value)}}
+                />
                 <br/><br/>
                 <button className='deleteMember'>Submit Calendar</button>
             </form>

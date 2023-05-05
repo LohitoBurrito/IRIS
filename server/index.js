@@ -18,7 +18,7 @@ app.use((req, res, next) => {
     next();
 });
 
-//Multer
+/*<----------------- Multer & MongoDB Connection -------------------> */
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, '../client/public/uploads')
@@ -29,7 +29,6 @@ const storage = multer.diskStorage({
 })
 const upload = multer({storage: storage})
 
-//Mongoose
 mongoose.connect("mongodb+srv://LohitoBurrito:Momuloda2603@cluster0.jmt7gkg.mongodb.net/IRIS?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -37,7 +36,7 @@ mongoose.connect("mongodb+srv://LohitoBurrito:Momuloda2603@cluster0.jmt7gkg.mong
 .then(() => console.log("db is connected"))
 .catch((err) => console.log(err));
 
-//Members Requests
+/*<----------------- Members API request -------------------> */
 app.get("/api/get/members", async (req, res) => {
     const members = await MembersModel.find({});
     res.send(members);
@@ -71,7 +70,26 @@ app.post("/api/post/deleteMember", async (req, res) => {
     res.send("deleted " + req.body.memberName);
 });
 
-//Login post request
+/*<----------------- Outreach API request -------------------> */
+
+/*<----------------- Sponsor API request -------------------> */
+
+/*<----------------- Homepage API request -------------------> */
+
+/*<----------------- Calendar API request -------------------> */
+app.post("/api/post/setCalendar", (req,res) => {
+    var x = req.body.val;
+    x = x.replace("r?cid", "embed?");
+    console.log(x);
+    
+});
+
+
+/*<----------------- Contact API request -------------------> */
+
+/*<----------------- Join API request -------------------> */
+
+/*<----------------- Login API request -------------------> */
 app.post("/api/post/login", (req, res) => {
     if (req.body.password === process.env.auth_key) {
         console.log("Correct Paswword");
