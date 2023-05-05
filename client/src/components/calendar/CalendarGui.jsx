@@ -11,7 +11,7 @@ function CalendarGui() {
  
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:4000/api/post/setCalendar", JSON.stringify({val: calendar}), {
+    Axios.post(link + "/api/post/setCalendar", JSON.stringify({val: calendar}), {
       headers: {
         'Content-Type': 'application/json',
       }   
