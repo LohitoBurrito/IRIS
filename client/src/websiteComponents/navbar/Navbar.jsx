@@ -26,7 +26,6 @@ function Navbar(props) {
                 <Link className="navlink" to="/calendar">CALENDAR</Link>
                 <Link className="navlink" to="/contact">CONTACT</Link>
                 <Link className="navlink" to="/sponsor">SPONSORS</Link>   
-                <Link className='navlink' to="/gui">GUI</Link>
                 <Link className="navlink" id="fill" to="/join">JOIN <RiArrowRightCircleLine style={ arrow }/></Link> 
             </div>                             
         </div>
