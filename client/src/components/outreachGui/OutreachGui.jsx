@@ -4,6 +4,7 @@ import Axios from 'axios'
 import './outreachGui.css'
 
 const link = "https://illinoisroboticsinspacebackend.onrender.com";
+//const link = "http://localhost:4000"
 
 function OutreachGui() {
     const [desc, setDesc] = useState("");
@@ -12,20 +13,19 @@ function OutreachGui() {
     const [x, setX] = useState("0");
     const [y, setY] = useState("0");
     const [zoom, setZoom] = useState("100");
-    const [width, setWidth] = useState("500");
     const [deleteTitle, setDeleteTitle] = useState("");
     const [filedata, setFileData] = useState(null);
 
     const addOutreach = (e) => {
         e.preventDefault();
         const formdata = new FormData();
-        formdata.append("file", filename);
+        formdata.append("filename", filename);
+        formdata.append("filedata", filedata)
         formdata.append("title", title);
         formdata.append("desc", desc);
         formdata.append("x", x);
         formdata.append("y", y);
         formdata.append("zoom", zoom);
-        formdata.append("width", width);
         Axios.post(link + '/api/post/addOutreach', formdata, {
             headers: {
                 "Content-Type":"multipart/form-data"
@@ -35,13 +35,7 @@ function OutreachGui() {
 
     const deleteOutreach = (e) => {
         e.preventDefault();
-        Axios.post(link + '/api/post/deleteOutreach', JSON.stringify({ 
-            outreachTitle: deleteTitle
-        }), {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-        }).then(res2 => console.log(res2)).catch(err => console.log(err));
+        Axios.delete(link + '/api/delete/deleteOutreach/' + deleteTitle);
     }
 
     return (
@@ -72,11 +66,7 @@ function OutreachGui() {
                     <br/><br/>
                     <input type="text" placeholder='moveY (- down/ + up) (initial: 0)' onChange={(e) => {
                         setY(e.target.value * -1);
-                    }}/>                    
-                    <br/><br/>
-                    <input type="text" placeholder='set image width (initial: 500)' onChange={(e) => {
-                        setWidth(e.target.value);
-                    }}/>                
+                    }}/>                                 
                     <br/><br/>
                     <textarea placeholder='enter outreach description here' onChange={(e) => {
                         setDesc(e.target.value);
@@ -87,7 +77,7 @@ function OutreachGui() {
                 <br/><br/>
                 <div className='cardO'>
                     <div className='imageBox' style={{
-                        width: width + "px",
+                        width: 500 + "px",
                         height: "350px",
                         backgroundPosition: x + "px" + " " + y + "px",
                         backgroundImage: "url(" + filedata + ")",

@@ -23,20 +23,51 @@
     margin-left: auto;
     margin-right: auto;
 }
+.card2 {
+    width: 1200px;
+    height: 350px;
+    display: flex;
+    justify-content: right;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 4px #919392;
+    margin-top: 30px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
 .descriptionBox {
     height: 350px;
 }
-.outreach h3 {
+.descriptionBox h3 {
     padding-top: 20px;
     color: black;
     padding-left: 20px;
     font-size: 75px;
     font-weight: 300;
 }
-.outreach p {
+.descriptionBox p {
     padding-top: 20px;
     color: black;
     padding-left: 20px;
     font-size: 20px;
     font-weight: 300;
+}
+.descriptionBoxR h3 {
+    width: 100%;
+    text-align: left;
+    padding-top: 20px;
+    color: black;
+    font-size: 75px;
+    font-weight: 300;
+}
+.descriptionBoxR p {
+    width: 100%;
+    text-align: left;
+    padding-top: 20px;
+    color: black;
+    font-size: 20px;
+    font-weight: 300;
+}
+.descriptionBoxR {
+    width: 55%;
 }

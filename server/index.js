@@ -11,6 +11,7 @@ const ContactModel = require('./models/ContactsModel');
 const JoinContentModel = require('./models/Join/JoinContent');
 const FAQModel = require('./models/Join/FAQ');
 const SponsorModel = require('./models/SponsorModel');
+const OutreachModel = require('./models/OutreachModel');
 const AboutUsModel = require('./models/Homepage/aboutUsModel');
 const DemosModel = require('./models/Homepage/demosModel');
 const TeamAtAGlanceModel = require('./models/Homepage/teamAtAGlanceModel');
@@ -77,6 +78,36 @@ app.post("/api/post/deleteMember", async (req, res) => {
 });
 
 /*<----------------- Outreach API request -------------------> */
+app.get("/api/get/getOutreach", async (req, res) => {
+    res.send(await OutreachModel.find({}))
+});
+
+app.post("/api/post/addOutreach", upload.single('filename'), async (req, res) => {
+    var string = req.body.filedata;
+    var bindata = Buffer.from(string.split(",")[1],"base64");
+    const outreach = new OutreachModel({
+        Title: req.body.title,
+        Description: req.body.desc,
+        Linkedin: req.body.linkedinURL,
+        x: req.body.x,
+        y: req.body.y,
+        zoom: req.body.zoom,
+        image: {
+            data: bindata,
+            contentType: "image/png"
+        }
+    });
+
+    try {
+        outreach.save();
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+app.delete("/api/delete/deleteOutreach/:id", async (req, res) => {
+    await SponsorModel.deleteMany({ "Title" : req.params.id });
+});
 
 /*<----------------- Sponsor API request -------------------> */
 app.get("/api/get/getSponsors", async (req, res) => {
