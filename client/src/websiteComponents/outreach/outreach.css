@@ -69,5 +69,6 @@
     font-weight: 300;
 }
 .descriptionBoxR {
-    width: 55%;
+    width: 54.5%;
+    padding-right: 20px;
 }
