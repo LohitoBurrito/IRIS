@@ -106,7 +106,7 @@ app.post("/api/post/addOutreach", upload.single('filename'), async (req, res) =>
 });
 
 app.delete("/api/delete/deleteOutreach/:id", async (req, res) => {
-    await SponsorModel.deleteMany({ "Title" : req.params.id });
+    await OutreachModel.deleteMany({ "Title" : req.params.id });
 });
 
 /*<----------------- Sponsor API request -------------------> */
