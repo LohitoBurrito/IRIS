@@ -80,7 +80,7 @@ app.post("/api/post/deleteMember", async (req, res) => {
 
 /*<----------------- Sponsor API request -------------------> */
 app.post("/api/post/addSponsor", async (req, res) => {
-    console.log(req)
+    res.send(req.body)
 });
 
 /*<----------------- Homepage API request -------------------> */

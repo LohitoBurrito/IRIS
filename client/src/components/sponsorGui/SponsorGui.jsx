@@ -25,7 +25,7 @@ function SponsorGui() {
                 "Content-Type":"multipart/form-data"
             }
         }
-        Axios.post(link + '/api/post/addSponsor', formData, config);
+        Axios.post(link + '/api/post/addSponsor', formData, config).then((res) => { console.log(res) });
     }
 
     const deleteFile = (e) => {
