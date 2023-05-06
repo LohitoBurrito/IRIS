@@ -12,7 +12,7 @@ function OutreachCardL({title, desc, picture, x, y, zoom, width}) {
   return (
     <div className='cardO'>
       <div className='imageBox' style={{
-          width: width + "px",
+          width: 500 + "px",
           height: "350px",
           backgroundPosition: x + "px" + " " + y + "px",
           backgroundImage: "url(" + picture + ")",
