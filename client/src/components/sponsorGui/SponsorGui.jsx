@@ -5,6 +5,8 @@ import './sponsorGui.css'
 
 const link = "https://illinoisroboticsinspacebackend.onrender.com";
 
+//const link = "http://localhost:4000"
+
 function SponsorGui() {
     const [filename, uploadFilename] = useState("");
     const [filedata, setFileData] = useState("");
@@ -14,29 +16,31 @@ function SponsorGui() {
 
     const postFile = (e) => {
         e.preventDefault();
-        let formData = new FormData();
-        formData.append('fileName', filename);
-        formData.append('fileData', filedata);
+        const formData = new FormData();
+        formData.append('filename', filename);
+        formData.append('filedata', filedata);
         formData.append('title', title);
         formData.append('sponsorType', sponsorType);
-        console.log(...formData);
-        const config = {
-            header: {
-                "Content-Type":"multipart/form-data"
+        
+        Axios.post(link + "/api/post/addNewSponsor", formData , {
+            headers : {
+                'Content-Type': 'multipart/form-data'
             }
-        }
-        Axios.post(link + '/api/post/addSponsor', formData, config).then((res) => { console.log(res) });
+        });
+        
+        
+        Axios.post(link + "/api/post/addNewSponsor", JSON.stringify({yo: "hey"}), {
+            headers : {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        
     }
 
     const deleteFile = (e) => {
         e.preventDefault();
-        Axios.post(link + '/api/post/deleteSponsor', JSON.stringify({ 
-            title: deleteTitle,
-            }), {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-        }).then(res2 => console.log(res2)).catch(err => console.log(err));
+        Axios.delete(link + "/api/delete/deleteSponsor/" + deleteTitle)
     }
 
     return (

@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
 const fs = require('fs');
@@ -11,19 +10,20 @@ const CalendarModel = require('./models/CalendarModel');
 const ContactModel = require('./models/ContactsModel');
 const JoinContentModel = require('./models/Join/JoinContent');
 const FAQModel = require('./models/Join/FAQ');
+const SponsorModel = require('./models/SponsorModel');
 const AboutUsModel = require('./models/Homepage/aboutUsModel');
 const DemosModel = require('./models/Homepage/demosModel');
 const TeamAtAGlanceModel = require('./models/Homepage/teamAtAGlanceModel');
 const TeamEventModel = require('./models/Homepage/teamEventModel');
+
 
 app.use(cors());
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     next();
 });
-
-//app.use(bodyParser.json());
 app.use(express.json());
+app.use(express.urlencoded ({extended: true}));
 
 /*<----------------- Multer & MongoDB Connection -------------------> */
 const storage = multer.diskStorage({
@@ -79,10 +79,34 @@ app.post("/api/post/deleteMember", async (req, res) => {
 /*<----------------- Outreach API request -------------------> */
 
 /*<----------------- Sponsor API request -------------------> */
-app.post("/api/post/addSponsor", async (req, res) => {
-    res.send(req.body)
+app.get("/api/get/getSponsors", async (req, res) => {
+    res.send(await SponsorModel.find({}));
 });
 
+app.post("/api/post/addNewSponsor", upload.single('filename'), (req, res) => {
+    console.log(req.body);
+    
+    var string = req.body.filedata;
+    var bindata = Buffer.from(string.split(",")[1],"base64");
+    const sponsor = new SponsorModel({
+        title: req.body.title,
+        sponsorType: req.body.sponsorType,
+        filedata: {
+            data: bindata,
+            contentType: "image/png"
+        }
+    });
+
+    try {
+        sponsor.save();
+    } catch (err) {
+        console.log(err);
+    }  
+});
+
+app.delete("/api/delete/deleteSponsor/:id", async (req, res) => {
+    await SponsorModel.deleteMany({ "title" : req.params.id });
+})
 /*<----------------- Homepage API request -------------------> */
 
 /*<----------------- Calendar API request -------------------> */
