@@ -91,7 +91,7 @@ function Gui() {
               <div className='loginContainer'>
                 <h1>IRIS</h1>
                 <form onSubmit={ checkPassword }>
-                  <input type="text" placeholder='enter key word' value={password} onChange={(e) => {
+                  <input type="password" placeholder='enter key word' value={password} onChange={(e) => {
                     changePassword(e.target.value);
                   }}/>
                   <br/><br/>

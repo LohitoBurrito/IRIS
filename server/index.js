@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
 const fs = require('fs');
@@ -16,11 +17,13 @@ const TeamAtAGlanceModel = require('./models/Homepage/teamAtAGlanceModel');
 const TeamEventModel = require('./models/Homepage/teamEventModel');
 
 app.use(cors());
-app.use(express.json());
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     next();
 });
+
+//app.use(bodyParser.json());
+app.use(express.json());
 
 /*<----------------- Multer & MongoDB Connection -------------------> */
 const storage = multer.diskStorage({
@@ -46,7 +49,7 @@ app.get("/api/get/members", async (req, res) => {
     res.send(members);
 });
 app.post("/api/post/addMember", upload.single('filename'), async (req, res) => {
-    console.log(req.body.file);
+    console.log(req.body);
     var string = req.body.file;
     var bindata = Buffer.from(string.split(",")[1],"base64");
     const member = new MembersModel({
@@ -62,7 +65,6 @@ app.post("/api/post/addMember", upload.single('filename'), async (req, res) => {
             contentType: "image/png"
         }
     });
-    console.log(member);
     try {
         await member.save();
     } catch (err) {
@@ -77,6 +79,9 @@ app.post("/api/post/deleteMember", async (req, res) => {
 /*<----------------- Outreach API request -------------------> */
 
 /*<----------------- Sponsor API request -------------------> */
+app.post("/api/post/addSponsor", async (req, res) => {
+    console.log(req)
+});
 
 /*<----------------- Homepage API request -------------------> */
 

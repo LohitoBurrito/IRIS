@@ -33,7 +33,7 @@ function MembersGui() {
         console.log(filename);
         Axios.post(link + '/api/post/addMember', formdata, {
             headers: {
-                "Content-Type":"multipart/form-data"
+                "Content-Type": "multipart/form-data"
             }
         }).then(res2 => console.log(res2)).catch(err => console.log(err));
         

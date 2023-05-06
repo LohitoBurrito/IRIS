@@ -7,35 +7,37 @@ const link = "https://illinoisroboticsinspacebackend.onrender.com";
 
 function SponsorGui() {
     const [filename, uploadFilename] = useState("");
+    const [filedata, setFileData] = useState("");
     const [title, changeTitle] = useState('');
     const [deleteTitle, updateDeleteTitle] = useState('');
     const [sponsorType, changeSponsorType] = useState("star")
 
     const postFile = (e) => {
         e.preventDefault();
-        const formdata = new FormData();
-        formdata.append("file", filename);
-        formdata.append("title", title);
-        formdata.append("sponsorType", sponsorType);
+        let formData = new FormData();
+        formData.append('fileName', filename);
+        formData.append('fileData', filedata);
+        formData.append('title', title);
+        formData.append('sponsorType', sponsorType);
+        console.log(...formData);
         const config = {
-            headers: {
+            header: {
                 "Content-Type":"multipart/form-data"
             }
         }
-        Axios.post(link + '/api/post/addSponsor', formdata, config);
+        Axios.post(link + '/api/post/addSponsor', formData, config);
     }
 
     const deleteFile = (e) => {
         e.preventDefault();
         Axios.post(link + '/api/post/deleteSponsor', JSON.stringify({ 
             title: deleteTitle,
-          }), {
+            }), {
             headers: {
               'Content-Type': 'application/json'
             }
         }).then(res2 => console.log(res2)).catch(err => console.log(err));
     }
-
 
     return (
         <div className='sponsorGui' id='sponsorGui'>
@@ -51,8 +53,12 @@ function SponsorGui() {
                         <option value="planet">Planet</option>
                     </select>
                     <input id="file-upload" type="file" onChange={(e) => {
-                        const file = e.target.files[0];
-                        uploadFilename(file);
+                        uploadFilename(e.target.files[0]);
+                        const reader = new FileReader();
+                        reader.onloadend = () => {
+                            setFileData(reader.result)
+                        }
+                        reader.readAsDataURL(e.target.files[0]);
                     }}/>                
                     <br/><br/>
                     <button className='addMember'>Add Sponsor</button>
