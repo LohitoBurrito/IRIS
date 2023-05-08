@@ -55,13 +55,19 @@
     font-weight: 300;
     font-size: 20px;
 }
-.Home .teamGlance {
-    width: 100vw;
-    height: 50vh;
-}
 .Home .aboutUs {
     width: 100vw;
     height: 50vh;
+}
+.Home .aboutUs p {
+    margin-left: 20%;
+    width: 60%;
+    text-align: center;
+    color: #3d3c3d;
+    margin-top: 4vh;
+    font-weight: 300;
+    font-size: 26.6px;
+    letter-spacing: 0.5px;
 }
 .Home .hero {
     height: 100vh;
@@ -93,4 +99,37 @@
 }
 .Home .hero .heroContainer a:hover {
     background-color:  #0088b5;
+}
+
+.homepageTitle {
+    text-align: center;
+    font-weight: 300;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: -20px;
+}
+h4 {
+    padding-top: 30px;
+    text-align: center;
+    font-weight: 300;
+    font-size: 19.6px;
+}
+.Home .teamGlance {
+    width: 100vw;
+    height: 600px;
+}
+.teamGlanceContainer {
+    margin-top: 75px;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+}
+.teamGlanceText {
+    padding-top: 125px;
+    width: 400px;
+}
+.teamGlanceText p {
+    font-weight: 300;
+    font-size: 30px;
 }

@@ -4,10 +4,10 @@ import { useState } from 'react'
 import './homeGui.css'
 
 const link = "https://illinoisroboticsinspacebackend.onrender.com";
+//const link = "http://localhost:4000"
 
 function HomeGui() {
     const [newAboutUs, setVal] = useState("");
-    const [newTeamGlance, setVal2] = useState("");
     const [teamEventName, setVal3] = useState("");
     const [teamEventDesc, setVal4] = useState("");
     const [demosName, setVal5] = useState("");
@@ -15,39 +15,56 @@ function HomeGui() {
     const [eventNameDel, setVal7] = useState("");
     const [demosNameDel, setVal8] = useState("");
 
+    const [mentor, amountOfMentors] = useState("");
+    const [members, amountOfMembers] = useState("");
+    const [years, amountOfYears] = useState("");
+    const [filename, setFilename] = useState("");
+    const [filedata, setFiledata] = useState("");
+    const [x, setX] = useState("");
+    const [y, setY] = useState("");
+    const [zoom, setZoom] = useState("100");
 
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      // Post Request to About Us
-      Axios.post(link + '/api/post/about', JSON.stringify({ Id: newAboutUs }), {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then(res2 => console.log(res2)).catch(err => console.log(err));
-    }
-  
     const handleSubmit2 = (e) => {
       e.preventDefault();
       // Post Request to Our Team at a Glance
-      Axios.post(link + '/api/post/teamGlance', JSON.stringify({ Id: newTeamGlance }), {
+      const formData = new FormData();
+      formData.append("mentor", mentor);
+      formData.append("members", members);
+      formData.append("years", years);
+      formData.append("filename", filename);
+      formData.append("filedata", filedata);
+      formData.append("x", x);
+      formData.append("y", y);
+      formData.append("zoom", zoom);
+      
+      Axios.put(link + '/api/post/teamGlance', formData, {
+        headers: {
+          "Content-Type":"multipart/form-data"
+        }
+      }).then(res2 => console.log(res2)).catch(err => console.log(err));
+    }
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      // Post Request to About Us
+      Axios.put(link + '/api/put/editAboutUs', JSON.stringify({ Id: newAboutUs }), {
         headers: {
           'Content-Type': 'application/json'
         }
-      }).then(res2 => console.log(res2)).catch(err => console.log(err));
+      })
     }
 
     const handleSubmit3 = (e) => {
       e.preventDefault();
       // Post Request to Team Event
-      Axios.post(link + '/api/post/addteamEvents', JSON.stringify({ 
+      Axios.post(link + '/api/post/addTeamEvent', JSON.stringify({ 
         title: teamEventName,
         desc: teamEventDesc
       }), {
         headers: {
           'Content-Type': 'application/json'
         }
-      }).then(res2 => console.log(res2)).catch(err => console.log(err));
+      })
     }
 
     const handleSubmit4 = (e) => {
@@ -60,30 +77,18 @@ function HomeGui() {
         headers: {
           'Content-Type': 'application/json'
         }
-      }).then(res2 => console.log(res2)).catch(err => console.log(err));
+      })
     }
 
     const handleSubmit5 = (e) => {
       e.preventDefault();
       // Post Request to Team Event
-      Axios.post(link + '/api/post/deleteteamEvents', JSON.stringify({ 
-        title: eventNameDel,
-      }), {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then(res2 => console.log(res2)).catch(err => console.log(err));
+      Axios.delete(link + '/api/delete/deleteTeamEvent/' + eventNameDel);
     }
     const handleSubmit6 = (e) => {
       e.preventDefault();
       // Post Request to Team Event
-      Axios.post(link + '/api/post/deleteDemosOutreach', JSON.stringify({ 
-        title: demosNameDel,
-      }), {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then(res2 => console.log(res2)).catch(err => console.log(err));
+      Axios.delete(link + '/api/delete/deleteDemos/' + demosNameDel);
     }
 
     return (
@@ -95,11 +100,41 @@ function HomeGui() {
             <br/><br/>
             <button className="aboutButton">Submit About Us</button>
           </form>
-          <form onSubmit={ handleSubmit2 }>
-            <textarea className="glanceInput" placeholder="enter our team at a glance here" type="text" value = { newTeamGlance } onChange={(e) => {setVal2(e.target.value)}}></textarea>
-            <br/><br/>
+          <form onSubmit={ handleSubmit2 } style={{ height: "450px" }}>
+            <div className="glanceInput">
+              <input id="glanceInputText" type="text" placeholder="Years as a team" onChange={(e) => { amountOfYears(e.target.value) }}></input>
+              <input id="glanceInputText" type="text" placeholder="Members Amount" onChange={(e) => { amountOfMembers(e.target.value) }}></input>
+              <input id="glanceInputText" type="text" placeholder="Mentors Amount" onChange={(e) => { amountOfMentors(e.target.value) }}></input>
+              <input id="glanceInputText" type="text" placeholder="Set x" onChange={(e) => { setX(e.target.value) }}></input>
+              <input id="glanceInputText" type="text" placeholder="Set Y" onChange={(e) => { setY(e.target.value) }}></input>
+              <input id="glanceInputText" type="text" placeholder="Set Zoom" onChange={(e) => { setZoom(e.target.value) }}></input>
+              <input type = "file" style={{ marginBottom: "50px" }} onChange={(e) => {
+                setFilename(e.target.files[0]);
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    setFiledata(reader.result)
+                }
+                reader.readAsDataURL(e.target.files[0]);
+              }}></input>
+            </div>
             <button className="glanceButton">Submit Our Team at a Glance</button>
           </form>
+          <div className="glanceImageOutputContainer">
+              <div className="" style={{
+                width: "400px",
+                height: "400px",
+                marginRight: "100px",
+                backgroundImage: "url(" + filedata + ")",
+                backgroundSize: "contain",
+                borderRadius: "200px",
+                backgroundPositionX: x + "px",
+                backgroundPositionY: y + "px",
+                backgroundSize: zoom + "%", 
+                marginLeft: "45px",
+                marginBottom: "50px" 
+              }}>
+              </div> 
+            </div>
           <form onSubmit={ handleSubmit3 }>
             <input type="text" placeholder="enter event name" value={ teamEventName } onChange={(e) => {setVal3(e.target.value)}}/>
             <br/><br/>

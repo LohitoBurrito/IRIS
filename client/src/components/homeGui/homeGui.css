@@ -38,6 +38,7 @@ form {
     margin-bottom: 20px;
 }
 .glanceButton {
+    transform: translateY(200px);
     height: 40px;
     color: black;
     border-radius: 20px;
@@ -47,11 +48,6 @@ form {
     padding-left: 15px;
     padding-right: 15px;
 } 
-.glanceInput {
-    border-color: white;
-    height: 200px;
-    width: 300px
-}
 .teamAtAGlanceGui h1 {
     padding-top: 20px;
     color: white;
@@ -72,7 +68,6 @@ form {
     padding-right: 15px;
 } 
 .homeGui form input {
-    margin-top: 20px;
     border-radius: 20px;
     font-family: 'Josefin Sans', sans-serif;  
     width: 500px;
@@ -87,4 +82,18 @@ form {
     cursor: pointer;
     padding-left: 15px;
     padding-right: 15px;
+}
+.glanceInput { 
+    font-family: 'Josefin Sans', sans-serif;  
+    font-size: 15px;
+    width: 500px;
+    height: 200px;
+    border-radius: 20px;
+}
+#glanceInputText {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    width: 500px;
+    padding: 10px;
 }

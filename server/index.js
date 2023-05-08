@@ -14,9 +14,8 @@ const SponsorModel = require('./models/SponsorModel');
 const OutreachModel = require('./models/OutreachModel');
 const AboutUsModel = require('./models/Homepage/aboutUsModel');
 const DemosModel = require('./models/Homepage/demosModel');
-const TeamAtAGlanceModel = require('./models/Homepage/teamAtAGlanceModel');
 const TeamEventModel = require('./models/Homepage/teamEventModel');
-
+const TeamGlanceModel = require('./models/Homepage/teamGlanceModel');
 
 app.use(cors());
 app.use((req, res, next) => {
@@ -138,9 +137,113 @@ app.post("/api/post/addNewSponsor", upload.single('filename'), (req, res) => {
 app.delete("/api/delete/deleteSponsor/:id", async (req, res) => {
     await SponsorModel.deleteMany({ "title" : req.params.id });
 })
-/*<----------------- Homepage API request -------------------> */
 
-/*<----------------- Calendar API request -------------------> */
+/*<----------------- Homepage API request -------------------> */
+app.get("/api/get/aboutUs", async (req, res) => { res.send(await AboutUsModel.find({})) });
+app.get("/api/get/demos", async (req, res) => { res.send(await DemosModel.find({})) });
+app.get("/api/get/teamEvent", async (req, res) => { res.send(await TeamEventModel.find({})) });
+app.get("/api/get/teamGlance", async (req, res) => { res.send(await TeamGlanceModel.find({})) })
+
+app.put("/api/put/editAboutUs", async (req, res) => { 
+    await AboutUsModel.updateOne({"val": 0},{ $set: { "aboutUsDesc": req.body.Id, "val": 0 }},{ upsert: true })
+});
+app.put("/api/post/teamGlance", upload.single('filename'), async (req, res) => {
+    const x = await TeamGlanceModel.find({});
+    if (x.length === 0) {
+        var string = req.body.filedata;
+        var bindata = "";
+        if (string.length != 0) {
+            bindata = Buffer.from(string.split(",")[1],"base64");
+        }
+        console.log(bindata);
+        console.log(req.body)
+        const teamGlance = new TeamGlanceModel({
+            val: 0,
+            Member: req.body.member,
+            Mentor: req.body.mentor,
+            Years: req.body.years,
+            image: {
+                data: bindata,
+                contentType: "image/png"
+            },
+            x: req.body.x !== '' ? req.body.x : 0,
+            y: req.body.x !== '' ? req.body.x : 0,
+            zoom: req.body.zoom !== '' ? req.body.zoom : 100
+        });
+        try {
+            await teamGlance.save();
+        } catch (err) {
+            console.log(err)
+        }
+    } else {
+        if (req.body.mentor !== '') {
+            await TeamGlanceModel.updateOne({"val": 0},{ $set: { "Mentor": req.body.mentor, "val": 0 }},{ upsert: true })
+        }
+        if (req.body.members !== '') {
+            await TeamGlanceModel.updateOne({"val": 0},{ $set: { "Member": req.body.members, "val": 0 }},{ upsert: true })
+        }
+        if (req.body.years !== '') {
+            await TeamGlanceModel.updateOne({"val": 0},{ $set: { "Years": req.body.years, "val": 0 }},{ upsert: true })
+        }
+        if (req.body.filedata !== '') {
+            var string = req.body.filedata;
+            console.log(string);
+            var bindata = "";
+            if (string.length != 0) {
+                bindata = Buffer.from(string.split(",")[1],"base64");
+            }
+            const newData = {
+                data: bindata,
+                contentType: "image/png"
+            }
+            await TeamGlanceModel.updateOne({"val": 0},{ $set: { "image": newData, "val": 0 }},{ upsert: true })
+        }
+        if (req.body.x !== '') {
+            await TeamGlanceModel.updateOne({"val": 0},{ $set: { "x": req.body.x, "val": 0 }},{ upsert: true })
+        }
+        if (req.body.y !== '') {
+            await TeamGlanceModel.updateOne({"val": 0},{ $set: { "y": req.body.y, "val": 0 }},{ upsert: true })
+        }
+        if (req.body.zoom !== '') {
+            await TeamGlanceModel.updateOne({"val": 0},{ $set: { "zoom": req.body.zoom, "val": 0 }},{ upsert: true })
+        }
+    }
+})
+
+app.post("/api/post/addTeamEvent", async (req, res) => { 
+    console.log(req.body);
+    const teamModel = new TeamEventModel({
+        eventTitle: req.body.title,
+        eventDesc: req.body.desc
+    });
+    try {
+        teamModel.save();
+    } catch (err) {
+        console.log(err);
+    }
+});
+app.post("/api/post/addDemos", async (req, res) => {  
+    console.log(req.body);
+    const demoModel = new DemosModel({
+        demosTitle: req.body.title,
+        demosDesc: req.body.desc
+    });
+    try {
+        demoModel.save();
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+app.delete("/api/delete/deleteTeamEvent/:id", async (req, res) => {  
+    await TeamEventModel.deleteMany({ "eventTitle" : req.params.id });
+
+});
+app.delete("/api/delete/deleteDemos/:id", async (req, res) => {  
+    await DemosModel.deleteMany({ "demosTitle" : req.params.id });
+});
+
+/*<----------------- Calendar API request ------------------->*/
 app.get("/api/get/getCalendar", async (req, res) => {
     res.send(await CalendarModel.find({}))
 });
@@ -163,7 +266,6 @@ app.post("/api/post/setCalendar", async (req,res) => {
 
     console.log(await CalendarModel.find({}));
 });
-
 
 /*<----------------- Contact API request -------------------> */
 app.get("/api/get/contactData", async (req, res) => {
