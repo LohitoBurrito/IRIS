@@ -56,30 +56,81 @@
     background-color: #0088b5;
 }
 
-.navbar .left {
+.left {
+    margin-top: 20px;
+    margin-left: 40px;
     padding-top: calc(5vh - 15px);
+    width: 100px;
+    height: 14px;
+    background: url('../../../public//images/IRIS-03.png');
+    background-size: contain;
+    background-repeat: no-repeat;
 }
-.navbar .left .logo {
-    position: relative;
-    margin-left: 10.5px;
-    letter-spacing: 2px;
+
+.navbar2 {
+    height: 10vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.navbar2 .menu {
+    color: #3d3c3d;
+    transform: translate(-50px, 20px);
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 6;
+}
+.navbar3 {
+    height: 10vh;
+    width: 100vw;
+    display: flex;
+    justify-content: right;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.navbar3 .menuFixed {
+    color: #3d3c3d;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 6;
+    position: fixed;
+    transform: translate(-50px, 20px);
+}
+.menubarOpen {
+    position: absolute;
+    top: 0vh;
+    height: 100vh;
+    background-color: white;
+    width: 100%;
+    z-index: 3;
+    position: fixed;
+    padding-top: 70px;
+}
+.menubarClose {
+    position: absolute;
+    top: -100vh;
+    height: 100vh;
+    background-color: white;
+    width: 100%;
+    z-index: 3;
+    position: fixed;
+}
+.menubarOpen .navlink {
     text-decoration: none;
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 45.5px;
-    font-weight: 300;
-    transition: 0.5s;
-    color:  #009FD4;
-}
-.navbar .left .logo::after {
-    content: "";
-    position: absolute;
-    background-color:  #009FD4;
-    height: 1px;
-    width: 0%;
-    left: 8.5px;
-    bottom: 30px;
+    color: #009FD4;
+    font-size: 70px; 
+    text-align: center;
+    display: block;
     transition: 0.2s;
 }
-.navbar .left .logo:hover::after {
-    width: 80%;
+
+.menubarOpen .navlink:hover {
+    font-size: 80px;
 }
