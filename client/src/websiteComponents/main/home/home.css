@@ -30,6 +30,7 @@
     justify-content: center;
     width: 100%;
     height: calc(100% - 4vh - 4vh - 26.6px - 42px);
+    flex-wrap: wrap;
 }
 .Home .event .eventDates .eventContainer {
     width: 25vw;
@@ -78,10 +79,6 @@
     padding-top: 40vh;
     padding-left: 10vw;
 }
-.Home .hero .heroContainer h1 {
-    color:#3d3c3d;
-    font-size: 70px;
-}
 .Home .hero .heroContainer p {
     color:#3d3c3d;
     font-size: 20px;
@@ -116,7 +113,9 @@ h4 {
 }
 .Home .teamGlance {
     width: 100vw;
-    height: 600px;
+    min-height: fit-content;
+    height: auto;
+    margin-bottom: 30px;
 }
 .teamGlanceContainer {
     margin-top: 75px;
@@ -124,12 +123,71 @@ h4 {
     height: 80%;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .teamGlanceText {
     padding-top: 125px;
     width: 400px;
+    text-align: center;
 }
 .teamGlanceText p {
     font-weight: 300;
     font-size: 30px;
+}
+.Home .hero .heroContainer h2 {
+    color:#3d3c3d;
+    font-size: 70px;
+    font-weight: 900;
+    margin-right: 20px;
+    color: #009FD4
+}
+.Home .hero .heroContainer span {
+    color:#3d3c3d;
+    font-size: 70px;
+    font-weight: 900;
+    display: inline-block;
+    white-space: nowrap;
+}
+.animation {
+    display: flex;
+    min-width: fit-content;
+    width: auto;
+    height: 70px;
+    overflow: hidden;
+}
+.Home .hero .heroContainer li {
+    max-width: fit-content;
+    list-style-type: none;
+    top: 0;
+    position: relative;
+    margin-bottom: 20px;
+    animation: slide 4s steps(2) infinite;
+}
+
+@keyframes slide {
+    100% {
+        top: -180px
+    }
+}
+
+.Home .hero .heroContainer li::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-left: 2px solid #3d3c3d;
+    left: 0;
+    top: -17px;
+    animation: typing 2s steps(10) infinite;
+    background-color: white;
+}
+
+@keyframes typing {
+    40%,
+    60% {
+        left: calc(100% + 10px)
+    }
+    100% {
+        left: 0
+    }
 }

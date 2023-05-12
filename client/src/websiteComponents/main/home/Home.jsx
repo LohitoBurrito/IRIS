@@ -101,7 +101,6 @@ function TeamGlance() {
         <div className='teamGlanceImage' style={{
           width: "400px",
           height: "400px",
-          marginRight: "100px",
           backgroundImage: "url(" + url + ")",
           backgroundSize: "contain",
           borderRadius: "200px",
@@ -124,7 +123,13 @@ function Hero() {
   return (
     <div className='hero'>
       <div className='heroContainer'>
-        <h1>WE ARE IRIS</h1>
+        <div className='animation'>
+          <h2>WE</h2>
+          <ul>
+            <li><span>ARE IRIS</span></li>
+            <li><span>BUILD ROVERS</span></li>
+          </ul>
+        </div>
         <br/><br/><br/>
         <p>Illinois Robotics in Space based in Urbana Champaign, Illinois</p>
         <br/><br/><br/><br/><br/>
