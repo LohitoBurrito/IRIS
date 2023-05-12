@@ -5,15 +5,14 @@ import Axios from 'axios'
 import { useState, useEffect } from 'react'
 import './outreach.css'
 
-const link = "https://illinoisroboticsinspacebackend.onrender.com";
-//const link = "http://localhost:4000"
+const link = process.env.REACT_APP_API_URL;
 
 function OutreachCardL({title, desc, picture, x, y, zoom, width}) {
   return (
     <div className='cardO'>
       <div className='imageBox' style={{
           width: 500 + "px",
-          height: "350px",
+          
           backgroundPosition: x + "px" + " " + y + "px",
           backgroundImage: "url(" + picture + ")",
           backgroundSize: zoom + "%",
@@ -35,7 +34,6 @@ function OutreachCardR({title, desc, picture, x, y, zoom, width}) {
       </div>
       <div className='imageBox' style={{
           width: 500 + "px",
-          height: "350px",
           backgroundPosition: x + "px" + " " + y + "px",
           backgroundImage: "url(" + picture + ")",
           backgroundSize: zoom + "%",

@@ -5,8 +5,7 @@ import Axios from 'axios'
 import { useState, useEffect } from 'react'
 import './join.css'
 
-const link = "https://illinoisroboticsinspacebackend.onrender.com";
-//const link = "http://localhost:4000"
+const link = process.env.REACT_APP_API_URL;
 
 function Join() {
   var count = 0;

@@ -19,6 +19,7 @@ const sideBar3Dark = {
 
 
 const link = process.env.REACT_APP_API_URL;
+console.log(link)
 
 function GuiPage() {
   const [contentStyle, setContentStyle] = useState(sideBar3Dark);

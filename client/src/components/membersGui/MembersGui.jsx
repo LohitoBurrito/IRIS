@@ -3,7 +3,7 @@ import Axios from 'axios'
 import { useState } from 'react'
 import './membersGui.css'
 
-const link = "https://illinoisroboticsinspacebackend.onrender.com";
+const link = process.env.REACT_APP_API_URL;
 
 function MembersGui() {
     const [name, setName] = useState("");

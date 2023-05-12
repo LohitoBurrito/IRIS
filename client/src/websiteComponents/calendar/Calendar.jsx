@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import Axios from 'axios'
 import './calendar.css'
 
-const link = "https://illinoisroboticsinspacebackend.onrender.com";
+const link = process.env.REACT_APP_API_URL;
 
 function Calendar() {
   const [calendar, setCalendar] = useState("");

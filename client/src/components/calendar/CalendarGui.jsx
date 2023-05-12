@@ -4,7 +4,7 @@ import { useState } from 'react'
 import './calendarGui.css'
 
 const calendarLink = "https://calendar.google.com/calendar/u/0/r?cid=aXJpcy51aXVjQGdtYWlsLmNvbQ"
-const link = "https://illinoisroboticsinspacebackend.onrender.com";
+const link = process.env.REACT_APP_API_URL
 
 function CalendarGui() {
   const [calendar, setCalendar] = useState("https://calendar.google.com/calendar/u/0/embed?=aXJpcy51aXVjQGdtYWlsLmNvbQ");

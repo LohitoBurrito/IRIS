@@ -7,7 +7,7 @@ import { FaFacebookSquare, FaTwitterSquare } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
 import Axios from 'axios'
 
-const link = "https://illinoisroboticsinspacebackend.onrender.com";
+const link = process.env.REACT_APP_API_URL;
 
 function Footer() {
   const [links, setLinks] = useState("");

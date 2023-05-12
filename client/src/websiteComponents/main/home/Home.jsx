@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import Axios from 'axios'
 import './home.css'
 
-const link = "https://illinoisroboticsinspacebackend.onrender.com";
-//const link = "http://localhost:4000"
+const link = process.env.REACT_APP_API_URL;
+
 
 function Event() {
   const [demos, setDemos] = useState([]);

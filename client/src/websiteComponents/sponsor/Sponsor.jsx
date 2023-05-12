@@ -5,17 +5,12 @@ import { useState, useEffect } from 'react'
 import Axios from 'axios'
 import './sponsor.css'
 
-const link = "https://illinoisroboticsinspacebackend.onrender.com";
-
-//const link = "http://localhost:4000"
+const link = process.env.REACT_APP_API_URL;
 
 function SponsorImage({url}) {
   return (
     <div className='sponsorImage' style={{
       backgroundImage: "url(" + url + ")",
-      height: "200px",
-      width: "200px",
-      backgroundSize: "contain"
     }}></div>
   )
 }
