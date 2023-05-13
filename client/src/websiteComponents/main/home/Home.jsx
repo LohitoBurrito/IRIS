@@ -121,21 +121,26 @@ function TeamGlance() {
 
 function Hero() {
   return (
-    <div className='hero'>
-      <div className='heroContainer'>
-        <div className='animation'>
-          <h2>WE</h2>
-          <ul>
-            <li><span>ARE IRIS</span></li>
-            <li><span>BUILD ROVERS</span></li>
-          </ul>
+    <>
+      <div className='hero'>
+        <div className='heroContainer'>
+          <div className='animation'>
+            <h2>WE</h2>
+            <ul>
+              <li><span>ARE IRIS</span></li>
+              <li><span>BUILD ROVERS</span></li>
+            </ul>
+          </div>
+          <br/><br/><br/>
+          <p>Illinois Robotics in Space based in Urbana Champaign, Illinois</p>
+          <br/><br/><br/><br/><br/>
+          <a href="#about">Learn More</a>
         </div>
-        <br/><br/><br/>
-        <p>Illinois Robotics in Space based in Urbana Champaign, Illinois</p>
-        <br/><br/><br/><br/><br/>
-        <a href="#about">Learn More</a>
-      </div>
-    </div>
+      </div> 
+      <div className='imageSlideAnim'></div>
+      <div className='imageSlideAnim2'></div>
+      <div className='imageSlideAnim3'></div>
+    </>
   )
 }
 
