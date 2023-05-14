@@ -9,15 +9,19 @@ const link = process.env.REACT_APP_API_URL;
 
 function SponsorImage({url}) {
   return (
-    <div className='sponsorImage' style={{
+    <img src={url}/>
+  )
+}
+
+/*
+<div className='sponsorImage' style={{
       backgroundImage: "url(" + url + ")",
       backgroundRepeat: "no-repeat",
       backgroundSize: "contain",
       width: "90%",
       height: "20vh"
     }}></div>
-  )
-}
+*/
 
 function Sponsor() {
 
