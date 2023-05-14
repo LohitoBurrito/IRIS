@@ -22,28 +22,30 @@ function Footer() {
   return (
     <div className='footer'>
         <div className='footerBox'>
-          <div className='logoBox'>
-            <Link className='logo' to="/main">IRIS</Link>
-          </div>
-          <div className='socials'>
-            <div className='socialsContainer'>
-              <a href={links.Instagram}><BsInstagram/></a>
+          <div className='footerBox2'>
+            <div className='logoBox'>
+              <Link className='logo' to="/main">IRIS</Link>
             </div>
-            <div className='socialsContainer'>
-              <a href={links.Facebook}><FaFacebookSquare/></a>
+            <div className='socials'>
+              <div className='socialsContainer'>
+                <a href={links.Instagram}><BsInstagram/></a>
+              </div>
+              <div className='socialsContainer'>
+                <a href={links.Facebook}><FaFacebookSquare/></a>
+              </div>
+              <div className='socialsContainer'>
+                <a href={links.Twitter}><FaTwitterSquare/></a>
+              </div>
+              <div className='socialsContainer'>
+                <a href={links.Youtube}><BsYoutube/></a>
+              </div>
             </div>
-            <div className='socialsContainer'>
-              <a href={links.Twitter}><FaTwitterSquare/></a>
-            </div>
-            <div className='socialsContainer'>
-              <a href={links.Youtube}><BsYoutube/></a>
-            </div>
-          </div>
-          <div className='copyright'>
-            <p className='para'>2023 © Illinois Robotics in Space</p>
-            <p className='para'>Made with <AiFillHeart/> in Urbana Champaign, IL</p>
-          </div>          
+          </div>         
         </div>
+        <div className='copyright'>
+          <p className='para'>2023 © Illinois Robotics in Space</p>
+          <p className='para'>Made with <AiFillHeart/> in Urbana Champaign, IL</p>
+        </div> 
     </div>
   )
 }
