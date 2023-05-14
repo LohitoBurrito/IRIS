@@ -13,7 +13,7 @@ function SponsorImage({url}) {
       backgroundImage: "url(" + url + ")",
       backgroundRepeat: "no-repeat",
       backgroundSize: "contain",
-      width: "100vw",
+      width: "width: 90%",
       height: "20vh"
     }}></div>
   )
