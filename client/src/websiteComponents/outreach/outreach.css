@@ -86,3 +86,23 @@
     height: auto;
     width: 700px;
 }
+.phone {
+    width: 375px;
+}
+.outreachContainer650 {
+    border: 1px solid black;
+    width: 90%;
+    min-height: fit-content;
+    height: auto;
+    display: block;
+    padding-top: 30px;
+}
+.imageContainer650 {
+    height: 300px;
+    width: 90%;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+.outreachpara, .outreachHeader {
+    text-align: center
+}

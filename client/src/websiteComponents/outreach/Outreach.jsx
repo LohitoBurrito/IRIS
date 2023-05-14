@@ -65,36 +65,63 @@ function Outreach() {
     return window.btoa(binary);
   };
 
-  return (
-    <div className='outreach'>
-      <Navbar/>
-      <h1>Outreach</h1>
-      <hr/>
-      <div className='allCards'>
-        {
-          outreach.map((val) => {
-            count++;
-            if (count % 2 == 0) {
-
-            }
-            const base64 = arrayBufferToBase64(val.image.data.data);
-            console.log(base64);
-            const url = 'data:image/png;base64,' + base64;
-            if (count % 2 == 0) {
-              return (
-                <OutreachCardR title={val.Title} desc={val.Description} picture={url} x={val.x} y={val.y} zoom={val.zoom} width={val.width}/>
-              )
-            } else {
-              return (
-                <OutreachCardL title={val.Title} desc={val.Description} picture={url} x={val.x} y={val.y} zoom={val.zoom} width={val.width}/>
-              )
-            }
-          })
-        }
+  if (screen.width >= 1250) {
+    return (
+      <div className='outreach'>
+        <Navbar/>
+        <h1>Outreach</h1>
+        <hr/>
+        <div className='allCards'>
+          {
+            outreach.map((val) => {
+              count++;
+              const base64 = arrayBufferToBase64(val.image.data.data);
+              console.log(base64);
+              const url = 'data:image/png;base64,' + base64;
+              if (count % 2 == 0) {
+                return (
+                  <OutreachCardR title={val.Title} desc={val.Description} picture={url} x={val.x} y={val.y} zoom={val.zoom} width={val.width}/>
+                )
+              } else {
+                return (
+                  <OutreachCardL title={val.Title} desc={val.Description} picture={url} x={val.x} y={val.y} zoom={val.zoom} width={val.width}/>
+                )
+              }
+            })
+          }
+        </div>
+        <Footer/>
       </div>
-      <Footer/>
+    )
+  } else {
+    <div className='outreach'>
+        <Navbar/>
+        <h1>Outreach</h1>
+        <hr/>
+        <div class="phone">
+          {
+            outreach.map((val) => {
+              const base64 = arrayBufferToBase64(val.image.data.data);
+              console.log(base64);
+              const url = 'data:image/png;base64,' + base64;
+              return (
+                <div class="outreachContainer650">
+                  <div class="imageContainer650">
+                    <img src={url}/>
+                  </div>
+                  <div class="title">
+                    <h1 class="outreachHeader">{val.Title}</h1>
+                  </div>
+                  <div class="content">
+                    <p class="outreachpara">{val.Description}</p>
+                  </div>
+                </div>
+              )
+            })
+          }
+        </div>
     </div>
-  )
+  }
 }
 
 export default Outreach
