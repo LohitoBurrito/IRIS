@@ -114,6 +114,10 @@
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 500;
     font-size: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 h6 {
     text-align: center;
@@ -121,6 +125,8 @@ h6 {
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 300;
     font-size: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 #outreachImage650 {
     display: block;

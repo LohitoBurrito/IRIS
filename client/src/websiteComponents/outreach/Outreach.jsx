@@ -121,6 +121,7 @@ function Outreach() {
             })
           }
         </div>
+        <Footer/>
       </div>
     )
   }
