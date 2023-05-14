@@ -12,6 +12,12 @@ function Join() {
   const [joinContent, setJoinContent] = useState("");
   const [faq, setFAQ] = useState([]);
 
+  const val1 = screen.width > 650 ? 'QandA' : 'QandA650'
+  const val2 = screen.width > 650 ? 'Question' : 'Question650' 
+  const val3 = screen.width > 650 ? 'Answer' : 'Answer650'
+  const val4 = screen.width > 650 ? 'QandAcontainer' : 'QandAcontainer650'
+
+
   useEffect(() => {
     Axios.get(link + "/api/get/getContent").then((response) => { setJoinContent(response.data[0].Content) })
     Axios.get(link + "/api/get/getFAQ").then((response) => { setFAQ(response.data) })
@@ -25,8 +31,8 @@ function Join() {
       <br/><br/>
       <p className='content'>{ joinContent }</p>
       <br/><br/>
-      <div className='QandA'>
-        <div className='QandAcontainer'>
+      <div className={val1}>
+        <div className={val4}>
           <p className='FAQ'>FAQ</p><br/><br/><br/>
           {
             faq.map((value) => {
@@ -34,9 +40,9 @@ function Join() {
               console.log(value);
               return (
                 <>
-                  <p className='Question'>{count}. {value.Question}</p>
+                  <p className={val2}>{count}. {value.Question}</p>
                   <br/>
-                  <p className='Answer'>{value.Answer}</p>
+                  <p className={val3}>{value.Answer}</p>
                   <br/>
                   <br/>
                 </>

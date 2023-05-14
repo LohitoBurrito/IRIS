@@ -35,12 +35,21 @@
     padding-left: 200px;
     padding-right: 250px;
 }
-.QandAcontainer {
-    font-family: 'Josefin Sans', sans-serif;
-    width: 100%;
-    box-shadow: 0 0.125rem 0.375rem 0 rgba(0, 0, 0, 0.12);
+
+.QandA650 {
+    /* padding-left: 200px; */
+    /* padding-right: 250px; */
+    /* width: 90vw; */
+    display: flex;
+    justify-content: center;
+}
+.QandAcontainer650 {
+    box-shadow: 0 0.125rem 0.375rem 0 rgba(0,0,0,.12);
+    font-family: Josefin Sans,sans-serif;
     height: 400px;
-    padding: 30px;
+    padding-top: 30px;
+    /* width: 100%; */
+    width: 90vw;
 }
 .FAQ {
     text-align: center;
@@ -59,4 +68,19 @@
     font-size: 25px;
     font-weight: 300;
     color: black;
+}
+
+.Question650 {
+    font-size: 25px;
+    font-weight: 300;
+    margin-left: 30px;
+    color: black;
+    font-family: Josefin Sans,sans-serif;
+}
+.Answer650 {
+    font-size: 25px;
+    font-weight: 300;
+    margin-left: 30px;
+    color: black;
+    font-family: Josefin Sans,sans-serif;
 }
