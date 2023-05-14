@@ -1,3 +1,6 @@
+.outreach {
+    overflow: hidden;
+}
 .outreach h1 {
     padding-top: 23vh;
     padding-bottom: 1vh;
@@ -98,11 +101,14 @@
     padding-top: 30px;
 }
 .imageContainer650 {
-    height: 300px;
+    min-height: fit-content;
+    height: auto;
     width: 90%;
-    border: 1px solid black;
     margin: 0 auto;
 }
 .outreachpara, .outreachHeader {
     text-align: center
+}
+.outreachImage650 {
+    width: 100%
 }
