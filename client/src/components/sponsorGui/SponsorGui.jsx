@@ -46,7 +46,7 @@ function SponsorGui() {
             <h1>Sponsors</h1>
             <div className='forms2'>
                 <form onSubmit={ postFile }>
-                    <input type="text" placeholder='enter sponsor name' value={ title } onChange={(e) => {changeTitle(e.target.value)}}/>
+                    <input type="text" placeholder='enter sponsor link' value={ title } onChange={(e) => {changeTitle(e.target.value)}}/>
                     <br/><br/>
                     <select name="sponsorType" id="sponsorType" onChange={(e) => {
                         changeSponsorType(e.target.value);
