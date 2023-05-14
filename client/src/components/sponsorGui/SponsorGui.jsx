@@ -66,7 +66,7 @@ function SponsorGui() {
                     <button className='addMember'>Add Sponsor</button>
                 </form>
                 <form onSubmit = { deleteFile }>
-                    <input type="text" placeholder='enter full sponsor name here' value={ deleteTitle } onChange={(e) => {updateDeleteTitle(e.target.value)}}/>
+                    <input type="text" placeholder='enter full sponsor weblink here' value={ deleteTitle } onChange={(e) => {updateDeleteTitle(e.target.value)}}/>
                     <br/><br/>
                     <button className='deleteMember'>Delete Sponsor</button>
                 </form>
