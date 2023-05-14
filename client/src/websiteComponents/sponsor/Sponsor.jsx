@@ -9,7 +9,7 @@ const link = process.env.REACT_APP_API_URL;
 
 function SponsorImage({url}) {
   return (
-    <img src={url}/>
+    <img className="sponsorImage" src={url}/>
   )
 }
 
