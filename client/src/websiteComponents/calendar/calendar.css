@@ -9,7 +9,6 @@
 .calendar .calendarContainer {
     display: flex;
     justify-content: center;
-    width: 90vw;
 }
 iframe {
     width: 90vw;
