@@ -72,6 +72,7 @@ function Sponsor() {
         {
           sponsor.map((val) => {
             const base64 = arrayBufferToBase64(val.filedata.data.data);
+            console.log(val.title)
             console.log(base64);
             const url = 'data:image/png;base64,' + base64;
             console.log(val.sponsorType)
