@@ -76,13 +76,15 @@
     background-image: linear-gradient(to right, #fff 0%, 70vw, #662d9100 100%);
 }
 .Home .hero .heroContainer {
-    width: 40vw;
     padding-top: 40vh;
     padding-left: 10vw;
+    display: block
 }
 .Home .hero .heroContainer p {
     color:#3d3c3d;
     font-size: 20px;
+    margin-bottom: 50px;
+    margin-top: 20px;
 }
 .Home .hero .heroContainer a {
     text-decoration: none;

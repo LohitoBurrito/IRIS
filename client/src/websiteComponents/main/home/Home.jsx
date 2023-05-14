@@ -131,9 +131,7 @@ function Hero() {
               <li><span>BUILD ROVERS</span></li>
             </ul>
           </div>
-          <br/><br/><br/>
           <p>Illinois Robotics in Space based in Urbana Champaign, Illinois</p>
-          <br/><br/><br/><br/><br/>
           <a href="#about">Learn More</a>
         </div>
       </div> 
