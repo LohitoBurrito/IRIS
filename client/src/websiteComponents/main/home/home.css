@@ -2,7 +2,7 @@
     font-family: 'Josefin Sans', sans-serif;
 }
 .Home .event {
-    height: 72.5vh;
+    margin-bottom: 80px;
     width: 100vw;
 }
 .Home .teamGlance h1,
@@ -26,8 +26,18 @@
     color:  #009FD4;
 }
 .Home .event .eventDates {
+    min-height: fit-content;
+    height: auto;
     display: flex;
     justify-content: center;
+    width: 100%;
+    height: calc(100% - 4vh - 4vh - 26.6px - 42px);
+    flex-wrap: wrap;
+}
+.Home .event .eventDatesBlock {
+    min-height: fit-content;
+    height: auto;
+    display: block;
     width: 100%;
     height: calc(100% - 4vh - 4vh - 26.6px - 42px);
     flex-wrap: wrap;
@@ -38,20 +48,28 @@
     margin-left: 10px;
     margin-right: 10px;
 }
-.Home .event .eventDates .eventContainer h2 {
+.Home .event .eventDatesBlock .eventContainerBlock {
+    width: 25vw;
+    height: 100%;
+    margin: 0 auto;
+}
+.Home .event .eventDates .eventContainer h2,
+.Home .event .eventDatesBlock .eventContainerBlock h2 {
     padding-top: 10vh;
     text-align: center;
     font-weight: 300;
     font-size: 19.6px;
 }
-.Home .event .eventDates .eventContainer h3 {
+.Home .event .eventDates .eventContainer h3,
+.Home .event .eventDatesBlock .eventContainerBlock h3 {
     text-align: center;
     font-weight: 300;
     font-size: 30px;
     margin-top: 20px;
     margin-bottom: -20px;
 }
-.Home .event .eventDates .eventContainer .changeText {
+.Home .event .eventDates .eventContainer .changeText,
+.Home .event .eventDatesBlock .eventContainerBlock .changeText {
     text-align: center;
     font-weight: 300;
     font-size: 20px;

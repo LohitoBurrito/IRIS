@@ -11,6 +11,9 @@ function Event() {
   const [demos, setDemos] = useState([]);
   const [events, setEvents] = useState([]);
 
+  const val1 = screen.width > 650 ? "eventContainer" : "eventContainerBlock"
+  const val2 = screen.width > 650 ? "eventDates" : "eventDatesBlock"
+
   useEffect(() => {
     Axios.get(link + "/api/get/demos").then((response) => { setDemos(response.data) })
     Axios.get(link + "/api/get/teamEvent").then((response) => { setEvents(response.data) })
@@ -20,12 +23,12 @@ function Event() {
     <div className='event'>
     <h1>Upcoming Events</h1>
     <p>A full calendar is available on our <Link className="link" to="/calendar">calendar</Link> page.</p>
-    <div className="eventDates">
-      <div className="eventContainer">
+    <div className={val2}>
+      <div className={val1}>
         <h2>Team Meetings:</h2>
         <p>All meets posted on <Link className="link" to="/calendar">calendar</Link></p>
       </div>
-      <div className="eventContainer">
+      <div className={val1}>
         <h2>Team Events:</h2>
         {
           events.map((val) => {
@@ -38,7 +41,7 @@ function Event() {
           })
         } 
       </div>
-      <div className="eventContainer">
+      <div className={val1}>
         <h2>Demos and Outreach:</h2>
           {
             demos.map((val) => {
