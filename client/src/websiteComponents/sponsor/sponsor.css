@@ -40,9 +40,7 @@
     text-decoration: none;
 }
 .sponsorCards {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: block;
     width: 100vw;
 }
 img {
