@@ -11,6 +11,10 @@ function SponsorImage({url}) {
   return (
     <div className='sponsorImage' style={{
       backgroundImage: "url(" + url + ")",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "contain",
+      width: "100vw",
+      height: "20vh"
     }}></div>
   )
 }
