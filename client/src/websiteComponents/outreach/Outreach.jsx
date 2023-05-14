@@ -111,10 +111,10 @@ function Outreach() {
                     <img id="outreachImage650" src={url}/>
                   </div>
                   <div class="title">
-                    <h1 class="outreachHeader">{val.Title}</h1>
+                    <h6 class="outreachHeader">{val.Title}</h6>
                   </div>
                   <div class="content">
-                    <p class="outreachpara">{val.Description}</p>
+                    <p id="outreachpara">{val.Description}</p>
                   </div>
                 </div>
               )

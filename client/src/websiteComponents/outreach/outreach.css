@@ -106,8 +106,9 @@
     width: 90%;
     margin: 0 auto;
 }
-.outreachpara, .outreachHeader {
-    text-align: center
+#outreachpara, h6 {
+    text-align: center;
+    word-break: break-word;
 }
 .outreachImage650 {
     width: 100%
