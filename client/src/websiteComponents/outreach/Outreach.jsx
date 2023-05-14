@@ -94,7 +94,8 @@ function Outreach() {
       </div>
     )
   } else {
-    <div className='outreach'>
+    return (
+      <div className='outreach'>
         <Navbar/>
         <h1>Outreach</h1>
         <hr/>
@@ -120,7 +121,8 @@ function Outreach() {
             })
           }
         </div>
-    </div>
+      </div>
+    )
   }
 }
 
