@@ -43,6 +43,13 @@
     display: flex;
     justify-content: center;
 }
+.QandAcontainer {
+    box-shadow: 0 0.125rem 0.375rem 0 rgba(0,0,0,.12);
+    font-family: Josefin Sans,sans-serif;
+    height: 400px;
+    padding-top: 30px;
+    width: 100%;
+}
 .QandAcontainer650 {
     box-shadow: 0 0.125rem 0.375rem 0 rgba(0,0,0,.12);
     font-family: Josefin Sans,sans-serif;
