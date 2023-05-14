@@ -120,16 +120,23 @@ function TeamGlance() {
 }
 
 function Hero() {
+
+  const val = screen.width > 650 ? (
+    <>
+      <h2>WE</h2>
+      <ul>
+        <li><span>ARE IRIS</span></li>
+        <li><span>BUILD ROVERS</span></li>
+      </ul>
+    </>
+  ) : (<><h2 style={{ color: "#3d3c3d" }}>WE</h2><h2 style={{ color: "#3d3c3d" }}>ARE IRIS</h2></>)
+
   return (
     <>
       <div className='hero'>
         <div className='heroContainer'>
           <div className='animation'>
-            <h2>WE</h2>
-            <ul>
-              <li><span>ARE IRIS</span></li>
-              <li><span>BUILD ROVERS</span></li>
-            </ul>
+            { val }
           </div>
           <p>Illinois Robotics in Space based in Urbana Champaign, Illinois</p>
           <a href="#about">Learn More</a>
