@@ -13,16 +13,6 @@ function SponsorImage({url}) {
   )
 }
 
-/*
-<div className='sponsorImage' style={{
-      backgroundImage: "url(" + url + ")",
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "contain",
-      width: "90%",
-      height: "20vh"
-    }}></div>
-*/
-
 function Sponsor() {
 
   const [sponsor, setSponsor] = useState([]);
