@@ -93,6 +93,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .outreachContainer650 {
     border: 1px solid black;
