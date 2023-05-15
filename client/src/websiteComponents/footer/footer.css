@@ -39,12 +39,12 @@
     background-color: #009FD4;
     height: 1px;
     width: 0%;
-    left: 39%;
-    bottom: 20px;
+    left: 39.5%;
+    bottom: 0px;
     transition: 0.2s;
 }
 .footer .logoBox .logo:hover::after {
-    width: 22%;
+    width: 21%;
 }
 .footer .socials {
     width: 100%;
