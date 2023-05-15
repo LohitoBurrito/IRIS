@@ -349,6 +349,15 @@ app.post("/api/post/addQuestion", async (req, res) => {
         console.log(err)
     }
 });
+app.put("/api/put/updateQuestion", async (req, res) => {
+    console.log(req.body)
+    if (req.body.newAnswer !== '') {
+        await FAQModel.updateMany({"Question": req.body.oldQuestion},{ $set: { "Answer": req.body.newAnswer }},{ upsert: false }) 
+    }
+    if (req.body.newQuestion !== '') {
+        await FAQModel.updateMany({"Question": req.body.oldQuestion},{ $set: { "Question": req.body.newQuestion }},{ upsert: false }) 
+    }
+})
 app.delete("/api/post/deleteQuestion", async (req, res) => {
     console.log(req.body.message);
     await FAQModel.deleteMany({ "Question": req.body.message });

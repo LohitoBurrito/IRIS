@@ -11,6 +11,13 @@ function JoinGui() {
     const [delQuestion, setDelQuestion] = useState("");
     const [answer, setAnswer] = useState("");
     const [allQuestions, setAllQuestions] = useState([]);
+    
+    const [updQuestion, setUpdQuestion] = useState("");
+    const [newQuestion, setNewQuestion] = useState("");
+    const [newAnswer, setNewAnswer] = useState("");
+
+    const [relQ1, setRelQ1] = useState("");
+    const [relQ2, setRelQ2] = useState("");
 
     const config =  {
         'Content-Type': 'application/json'
@@ -52,6 +59,22 @@ function JoinGui() {
         .then(res2 => console.log(res2))
         .catch(err => console.log(err));
     }
+    const updateQuestion = (e) => {
+        e.preventDefault();
+        console.log(updQuestion)
+        console.log(newQuestion)
+        console.log(newAnswer)
+        setUpdQuestion(newQuestion)
+        Axios.put(link + '/api/put/updateQuestion', JSON.stringify({
+            oldQuestion: updQuestion,
+            newQuestion: newQuestion,
+            newAnswer: newAnswer
+        }), { 
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
 
 
     return (
@@ -70,20 +93,41 @@ function JoinGui() {
                 <br/><br/>
                 <button>Submit Join Content</button>
             </form>
+            <form onSubmit={ updateQuestion }> 
+                <select id="comboA" onChange={(e) => {
+                    console.log(e.target.value)
+                    setUpdQuestion(e.target.value)
+                }}>
+                    <option disabled selected value="disabled">Choose question to be updated</option>
+                    {
+                        allQuestions.map((val) => {
+                            return (
+                                <option value={val.Question}>{val.Question}</option>
+                            )
+                        })
+                    }
+                </select>
+                <br/><br/>
+                <textarea placeholder='enter answer here to be added' value={ newQuestion } onChange={(e) => {setNewQuestion(e.target.value)}}></textarea>
+                <br/><br/>
+                <textarea placeholder='enter answer here to be added' value={ newAnswer } onChange={(e) => {setNewAnswer(e.target.value)}}></textarea>
+                <br/><br/>
+                <button>Update Question</button>
+            </form>
             <form onSubmit={ deleteQuestion }> 
-                    <select id="comboA" onChange={(e) => {
-                        console.log(e.target.value)
-                        setDelQuestion(e.target.value)
-                    }}>
-                        <option disabled selected value="disabled">Choose question to be deleted</option>
-                        {
-                            allQuestions.map((val) => {
-                                return (
-                                    <option value={val.Question}>{val.Question}</option>
-                                )
-                            })
-                        }
-                    </select>
+                <select id="comboA" onChange={(e) => {
+                    console.log(e.target.value)
+                    setDelQuestion(e.target.value)
+                }}>
+                    <option disabled selected value="disabled">Choose question to be deleted</option>
+                    {
+                        allQuestions.map((val) => {
+                            return (
+                                <option value={val.Question}>{val.Question}</option>
+                            )
+                        })
+                    }
+                </select>
                 <br/><br/>
                 <button>Delete Question</button>
             </form>
