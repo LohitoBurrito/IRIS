@@ -49,7 +49,7 @@
     padding-top: 20px;
     color: black;
     padding-left: 20px;
-    font-size: 75px;
+    font-size: 40px;
     font-weight: 300;
     word-break: break-word;
 }
@@ -67,7 +67,7 @@
     text-align: left;
     padding-top: 20px;
     color: black;
-    font-size: 75px;
+    font-size: 40px;
     font-weight: 300;
     margin-left: 10px;
     word-break: break-word;
@@ -126,7 +126,7 @@ h6 {
     word-break: break-word;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 300;
-    font-size: 50px;
+    font-size: 35px;
     padding-left: 20px;
     padding-right: 20px;
 }
