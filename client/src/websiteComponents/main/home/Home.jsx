@@ -128,8 +128,11 @@ function Hero() {
     <>
       <h2>WE</h2>
       <ul>
+        <li><span>ARE INNOVATORS</span></li>
+        <li><span>ARE LEADERS</span></li>
+        <li><span>ARE FAMILY</span></li>
+        <li><span>ARE A TEAM</span></li>
         <li><span>ARE IRIS</span></li>
-        <li><span>BUILD ROVERS</span></li>
       </ul>
     </>
   ) : (<><h2 style={{ color: "#3d3c3d" }}>WE</h2><h2 style={{ color: "#3d3c3d" }}>ARE IRIS</h2></>)
@@ -148,6 +151,7 @@ function Hero() {
       <div className='imageSlideAnim'></div>
       <div className='imageSlideAnim2'></div>
       <div className='imageSlideAnim3'></div>
+      <div className='imageSlideAnim4'></div>
     </>
   )
 }
