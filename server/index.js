@@ -349,9 +349,9 @@ app.post("/api/post/addQuestion", async (req, res) => {
         console.log(err)
     }
 });
-app.delete("/api/post/deleteQuestion/:id", async (req, res) => {
-    await FAQModel.deleteMany({ "Question": req.params.id });
-    console.log(req.params.id);
+app.delete("/api/post/deleteQuestion", async (req, res) => {
+    console.log(req.body.message);
+    await FAQModel.deleteMany({ "Question": req.body.message });
 });
 
 /*<----------------- Login API request -------------------> */

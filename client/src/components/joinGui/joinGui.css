@@ -1,9 +1,14 @@
+.joinGui {
+    display: flex;
+    flex-wrap: wrap;
+}
 .joinGui h1 {
     padding-top: 20px;
     color: white;
     padding-left: 20px;
     font-size: 75px;
     font-weight: 300;
+    width: 100%;
 }
 .joinGui form textarea {
     border-radius: 20px;

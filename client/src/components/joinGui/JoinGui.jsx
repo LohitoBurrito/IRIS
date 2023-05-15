@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Axios from 'axios'
 import './joinGui.css'
 
@@ -10,10 +10,15 @@ function JoinGui() {
     const [question, setQuestion] = useState("");
     const [delQuestion, setDelQuestion] = useState("");
     const [answer, setAnswer] = useState("");
+    const [allQuestions, setAllQuestions] = useState([]);
 
     const config =  {
         'Content-Type': 'application/json'
     }
+
+    useEffect(() => {
+        Axios.get(link + "/api/get/getFAQ").then((response) => { setAllQuestions(response.data) })
+    })
 
     const changeDesc = (e) => {
         e.preventDefault();
@@ -38,9 +43,10 @@ function JoinGui() {
     }
     const deleteQuestion = (e) => {
         e.preventDefault();
-        Axios.delete(link + '/api/post/deleteQuestion/' + delQuestion, {
-            headers: {
-              'Content-Type': 'application/json'
+        console.log(delQuestion)
+        Axios.delete(link + '/api/post/deleteQuestion', {
+            data: {
+                message: delQuestion
             }
         })
         .then(res2 => console.log(res2))
@@ -51,11 +57,7 @@ function JoinGui() {
     return (
         <div className='joinGui' id="joinGui">
             <h1>Join</h1>
-            <form onSubmit={ changeDesc }>
-                <textarea placeholder='enter content here' value={ content } onChange={(e) => {setContent(e.target.value)}}></textarea>
-                <br/><br/>
-                <button>Submit Join Content</button>
-            </form>
+            <br/>
             <form onSubmit={ addQuestion }> 
                 <textarea placeholder='enter question here to be added' value={ question } onChange={(e) => {setQuestion(e.target.value)}}></textarea>
                 <br/><br/>
@@ -63,8 +65,25 @@ function JoinGui() {
                 <br/><br/>
                 <button>Submit Question</button>
             </form>
+            <form onSubmit={ changeDesc }>
+                <textarea placeholder='enter content here' value={ content } onChange={(e) => {setContent(e.target.value)}}></textarea>
+                <br/><br/>
+                <button>Submit Join Content</button>
+            </form>
             <form onSubmit={ deleteQuestion }> 
-                <textarea placeholder='enter question here to be deleted' value={ delQuestion } onChange={(e) => {setDelQuestion(e.target.value)}}></textarea>
+                    <select id="comboA" onChange={(e) => {
+                        console.log(e.target.value)
+                        setDelQuestion(e.target.value)
+                    }}>
+                        <option disabled selected value="disabled">Choose question to be deleted</option>
+                        {
+                            allQuestions.map((val) => {
+                                return (
+                                    <option value={val.Question}>{val.Question}</option>
+                                )
+                            })
+                        }
+                    </select>
                 <br/><br/>
                 <button>Delete Question</button>
             </form>
