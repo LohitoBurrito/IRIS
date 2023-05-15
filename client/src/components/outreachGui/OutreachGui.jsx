@@ -13,23 +13,36 @@ function OutreachGui() {
     const [y, setY] = useState("0");
     const [zoom, setZoom] = useState("100");
     const [deleteTitle, setDeleteTitle] = useState("");
-    const [filedata, setFileData] = useState(null);
+    const [filedata, setFileData] = useState("");
+    const [imageSize, setImageSize] = useState(0);
+    const [textClass, setTextClass] = useState("descriptionBoxWide");
 
     const addOutreach = (e) => {
         e.preventDefault();
         const formdata = new FormData();
-        formdata.append("filename", filename);
-        formdata.append("filedata", filedata)
-        formdata.append("title", title);
-        formdata.append("desc", desc);
-        formdata.append("x", x);
-        formdata.append("y", y);
-        formdata.append("zoom", zoom);
-        Axios.post(link + '/api/post/addOutreach', formdata, {
-            headers: {
-                "Content-Type":"multipart/form-data"
-            }
-        }).then(res2 => console.log(res2)).catch(err => console.log(err));
+        if (filedata !== "") {
+            formdata.append("filename", filename);
+            formdata.append("filedata", filedata)
+            formdata.append("title", title);
+            formdata.append("desc", desc);
+            formdata.append("x", x);
+            formdata.append("y", y);
+            formdata.append("zoom", zoom);
+            Axios.post(link + '/api/post/addOutreach', formdata, {
+                headers: {
+                    "Content-Type":"multipart/form-data"
+                }
+            }).then(res2 => console.log(res2)).catch(err => console.log(err));
+        } else {
+            Axios.post(link + '/api/post/addOutreach', JSON.stringify({
+                desc: desc,
+                title: title
+            }), {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+        }
     }
 
     const deleteOutreach = (e) => {
@@ -50,7 +63,9 @@ function OutreachGui() {
                         setFileName(e.target.files[0]);
                         const reader = new FileReader();
                         reader.onloadend = () => {
-                            setFileData(reader.result)
+                            setTextClass("descriptionBox");
+                            setImageSize(500);
+                            setFileData(reader.result);
                         }
                         reader.readAsDataURL(e.target.files[0]);
                     }}/>
@@ -76,14 +91,14 @@ function OutreachGui() {
                 <br/><br/>
                 <div className='cardO'>
                     <div className='imageBox' style={{
-                        width: 500 + "px",
+                        width: imageSize + "px",
                         height: "100%",
                         backgroundPosition: x + "px" + " " + y + "px",
                         backgroundImage: "url(" + filedata + ")",
                         backgroundSize: zoom + "%",
                         border: "none",
                     }}></div>
-                    <div className='descriptionBox'>
+                    <div className={textClass}>
                         <h3>{title}</h3>
                         <p>{desc}</p>
                     </div>

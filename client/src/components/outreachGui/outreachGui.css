@@ -80,6 +80,11 @@
     height: auto;
     width: 700px;
 }
+.descriptionBoxWide {
+    min-height: 350px;
+    height: auto;
+    width: 1200px;
+}
 .forms2 h2 {
     padding-top: 20px;
     color: white;
@@ -91,7 +96,7 @@
     padding-top: 20px;
     color: black;
     padding-left: 20px;
-    font-size: 75px;
+    font-size: 40px;
     font-weight: 300;
     word-break: break-word;
 }

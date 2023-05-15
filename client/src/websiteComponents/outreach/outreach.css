@@ -129,12 +129,46 @@ h6 {
     font-size: 35px;
     padding-left: 20px;
     padding-right: 20px;
+    padding-top: 20px
 }
 #outreachImage650 {
     display: block;
-    margin-bottom: 30px;
     width: 100%;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     margin-top: 0px;
+}
+.cardB {
+    width: 1200px;
+    min-height: 350px;
+    height: auto;
+    display: flex;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 4px #919392;
+    margin-top: 30px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+.descriptionBoxBase {
+    min-height: 350px;
+    height: auto;
+    width: 1180px;
+}
+.descriptionBoxBase h3 {
+    padding-top: 20px;
+    color: black;
+    padding-left: 20px;
+    font-size: 40px;
+    font-weight: 300;
+    word-break: break-word;
+}
+.descriptionBoxBase p {
+    padding-top: 20px;
+    color: black;
+    padding-left: 20px;
+    font-size: 20px;
+    font-weight: 300;
+    word-break: break-word;
+    padding-bottom: 20px;
 }

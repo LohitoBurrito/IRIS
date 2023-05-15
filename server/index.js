@@ -85,24 +85,42 @@ app.get("/api/get/getOutreach", async (req, res) => {
 
 app.post("/api/post/addOutreach", upload.single('filename'), async (req, res) => {
     var string = req.body.filedata;
-    var bindata = Buffer.from(string.split(",")[1],"base64");
-    const outreach = new OutreachModel({
-        Title: req.body.title,
-        Description: req.body.desc,
-        Linkedin: req.body.linkedinURL,
-        x: req.body.x,
-        y: req.body.y,
-        zoom: req.body.zoom,
-        image: {
-            data: bindata,
-            contentType: "image/png"
-        }
-    });
 
-    try {
-        outreach.save();
-    } catch (err) {
-        console.log(err);
+    if (string === undefined) {
+        console.log(req.body)
+        const outreach = new OutreachModel({
+            Title: req.body.title,
+            Description: req.body.desc,
+            image: {
+                data: "undefined",
+                contentType: "image/png"
+            }
+        })
+        try {
+            outreach.save();
+        } catch (err) {
+            console.log(err);
+        }
+    } else {
+        var bindata = Buffer.from(string.split(",")[1],"base64");
+        const outreach = new OutreachModel({
+            Title: req.body.title,
+            Description: req.body.desc,
+            Linkedin: req.body.linkedinURL,
+            x: req.body.x,
+            y: req.body.y,
+            zoom: req.body.zoom,
+            image: {
+                data: bindata,
+                contentType: "image/png"
+            }
+        });
+    
+        try {
+            outreach.save();
+        } catch (err) {
+            console.log(err);
+        }
     }
 });
 

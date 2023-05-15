@@ -7,6 +7,17 @@ import './outreach.css'
 
 const link = process.env.REACT_APP_API_URL;
 
+function OutreachCardBase({title, desc}) {
+  return (
+    <div className='cardB'>
+      <div className='descriptionBoxBase'>
+        <h3>{title}</h3>
+        <p>{desc}</p>
+      </div>
+    </div>
+  )
+}
+
 function OutreachCardL({title, desc, picture, x, y, zoom, width}) {
   return (
     <div className='cardO'>
@@ -76,9 +87,13 @@ function Outreach() {
             outreach.map((val) => {
               count++;
               const base64 = arrayBufferToBase64(val.image.data.data);
-              console.log(base64);
               const url = 'data:image/png;base64,' + base64;
-              if (count % 2 == 0) {
+
+              if (val.x === undefined) {
+                return (
+                  <OutreachCardBase title={val.Title} desc={val.Description}/>
+                )
+              } else if (count % 2 == 0) {
                 return (
                   <OutreachCardR title={val.Title} desc={val.Description} picture={url} x={val.x} y={val.y} zoom={val.zoom} width={val.width}/>
                 )
@@ -102,22 +117,35 @@ function Outreach() {
         <div class="phone">
           {
             outreach.map((val) => {
-              const base64 = arrayBufferToBase64(val.image.data.data);
-              console.log(base64);
-              const url = 'data:image/png;base64,' + base64;
-              return (
-                <div class="outreachContainer650">
-                  <div class="imageContainer650">
-                    <img id="outreachImage650" src={url}/>
+              if (val.x === undefined) {
+                console.log("image does not exist")
+                return (
+                  <div class="outreachContainer650">
+                    <div class="title">
+                      <h6 class="outreachHeader">{val.Title}</h6>
+                    </div>
+                    <div class="content">
+                      <p id="outreachpara">{val.Description}</p>
+                    </div>
                   </div>
-                  <div class="title">
-                    <h6 class="outreachHeader">{val.Title}</h6>
+                )
+              } else {
+                const base64 = arrayBufferToBase64(val.image.data.data);
+                const url = 'data:image/png;base64,' + base64;
+                return (
+                  <div class="outreachContainer650">
+                    <div class="imageContainer650">
+                      <img id="outreachImage650" src={url}/>
+                    </div>
+                    <div class="title">
+                      <h6 class="outreachHeader">{val.Title}</h6>
+                    </div>
+                    <div class="content">
+                      <p id="outreachpara">{val.Description}</p>
+                    </div>
                   </div>
-                  <div class="content">
-                    <p id="outreachpara">{val.Description}</p>
-                  </div>
-                </div>
-              )
+                )
+              }
             })
           }
         </div>

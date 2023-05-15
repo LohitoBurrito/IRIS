@@ -11,19 +11,19 @@ const Outreach = new mongoose.Schema({
     },
     x: {
         type: String,
-        required: true
+        required: false
     },
     y: {
         type: String,
-        required: true
+        required: false
     },
     zoom: {
         type: Number,
-        required: true
+        required: false
     },
     image: {
         data: Buffer,
-        contentType: String
+        contentType: String,
     }
 });
 
