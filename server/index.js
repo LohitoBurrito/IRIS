@@ -133,6 +133,21 @@ app.get("/api/get/getSponsors", async (req, res) => {
     res.send(await SponsorModel.find({}));
 });
 
+app.put("/api/put/updateSponsorData", upload.single('filename'), async (req, res) => {
+    console.log(req.body);
+    if (req.body.weblink != '') {
+        await SponsorModel.updateMany({"title": req.body.title},{ $set: { "weblink": req.body.weblink}},{ upsert: false })
+    }
+    if (req.body.sponsorType != '') {
+        await SponsorModel.updateMany({"title": req.body.title},{ $set: { "sponsorType": req.body.sponsorType}},{ upsert: false })
+    }
+    if (req.body.filedata !== undefined) {
+        var string = req.body.filedata;
+        var bindata = Buffer.from(string.split(",")[1],"base64");
+        await SponsorModel.updateMany({"title": req.body.title}, { $set: { "filedata": { data: bindata, contentType: "image/png" }}}, { upsert: false })
+    }
+})
+
 app.post("/api/post/addNewSponsor", upload.single('filename'), (req, res) => {
     console.log(req.body);
     
@@ -140,6 +155,7 @@ app.post("/api/post/addNewSponsor", upload.single('filename'), (req, res) => {
     var bindata = Buffer.from(string.split(",")[1],"base64");
     const sponsor = new SponsorModel({
         title: req.body.title,
+        weblink: req.body.weblink,
         sponsorType: req.body.sponsorType,
         filedata: {
             data: bindata,

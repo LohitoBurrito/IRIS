@@ -66,7 +66,7 @@ function MembersGui() {
                         setLinkedin(e.target.value);
                     }}/>
                     <br/><br/>
-                    <input id="file-upload" type="file" onChange={(e) => {
+                    <input id="members-file-upload" type="file" onChange={(e) => {
                         setfilename(e.target.files[0]);
                         const reader = new FileReader();
                         reader.onloadend = () => {

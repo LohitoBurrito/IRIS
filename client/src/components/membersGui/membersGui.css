@@ -48,7 +48,7 @@
     padding-left: 15px;
     padding-right: 15px;
 }
-input[type="file"] {
+#members-file-upload {
     margin-right: 200px;    
 }
 .custom-file-upload {

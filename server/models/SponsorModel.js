@@ -5,6 +5,10 @@ const Sponsor = new mongoose.Schema({
         type: String,
         required: true
     },
+    weblink: {
+        type: String,
+        required: false
+    },
     sponsorType: {
         type: String,
         required: true
