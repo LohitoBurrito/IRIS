@@ -77,11 +77,64 @@ app.post("/api/post/deleteMember", async (req, res) => {
     await MembersModel.deleteMany({MemberName: req.body.memberName});
     res.send("deleted " + req.body.memberName);
 });
+app.put("/api/put/updateMember", upload.single('filename'), async (req, res) => {
+    console.log(req.body)
+    if (req.body.zoom !== '') {
+        await MembersModel.updateMany({"MemberName": req.body.oldName},{ $set: { "zoom": req.body.zoom}},{ upsert: false })
+    }
+    if (req.body.y !== '') {
+        await MembersModel.updateMany({"MemberName": req.body.oldName},{ $set: { "y": req.body.y}},{ upsert: false })
+    }
+    if (req.body.x !== '') {
+        await MembersModel.updateMany({"MemberName": req.body.oldName},{ $set: { "x": req.body.x}},{ upsert: false })
+    }
+    if (req.body.desc !== '') {
+        await MembersModel.updateMany({"MemberName": req.body.oldName},{ $set: { "Description": req.body.desc}},{ upsert: false })
+    }
+    if (req.body.jobTitle !== '') {
+        await MembersModel.updateMany({"MemberName": req.body.oldName},{ $set: { "JobTitle": req.body.jobTitle}},{ upsert: false })
+    }
+    if (req.body.linkedin !== '') {
+        await MembersModel.updateMany({"MemberName": req.body.oldName},{ $set: { "Linkedin": req.body.linkedin}},{ upsert: false })
+    }
+    if (req.body.filedata !== undefined) {
+        var string = req.body.filedata;
+        var bindata = Buffer.from(string.split(",")[1],"base64");
+        await MembersModel.updateMany({"MemberName": req.body.oldName},{ $set: { "image": {data: bindata, contentType: "image/png"}}},{ upsert: false })
+    }
+    if (req.body.newName !== '') {
+        await MembersModel.updateMany({"MemberName": req.body.oldName},{ $set: { "MemberName": req.body.newName}},{ upsert: false })
+    }
+});
 
 /*<----------------- Outreach API request -------------------> */
 app.get("/api/get/getOutreach", async (req, res) => {
     res.send(await OutreachModel.find({}))
 });
+
+app.put("/api/put/updateOutreach", upload.single('filename'), async (req, res) => {
+    console.log(req.body)
+    if (req.body.desc !== '') {
+        await OutreachModel.updateMany({"Title": req.body.oldTitle},{ $set: { "Description": req.body.desc}},{ upsert: false })
+    }
+    if (req.body.x !== '') {
+        await OutreachModel.updateMany({"Title": req.body.oldTitle},{ $set: { "x": req.body.x}},{ upsert: false })
+    }
+    if (req.body.y !== '') {
+        await OutreachModel.updateMany({"Title": req.body.oldTitle},{ $set: { "y": req.body.y}},{ upsert: false })
+    } 
+    if (req.body.zoom !== '') {
+        await OutreachModel.updateMany({"Title": req.body.oldTitle},{ $set: { "zoom": req.body.zoom}},{ upsert: false })
+    }
+    if (req.body.filedata !== undefined) {
+        var string = req.body.filedata;
+        var bindata = Buffer.from(string.split(",")[1],"base64");
+        await OutreachModel.updateMany({"Title": req.body.oldTitle},{ $set: { "image": {data: bindata, contentType: "image/png"}}},{ upsert: false })
+    }
+    if (req.body.newTitle != '') {
+        await OutreachModel.updateMany({"Title": req.body.oldTitle},{ $set: { "Title": req.body.newTitle}},{ upsert: false })
+    }
+})
 
 app.post("/api/post/addOutreach", upload.single('filename'), async (req, res) => {
     var string = req.body.filedata;
