@@ -73,6 +73,9 @@ app.post("/api/post/addMember", upload.single('filename'), async (req, res) => {
         console.log(err)
     }
 });
+app.put("/api/put/updateMember", async (res, res) => {
+
+});
 app.post("/api/post/deleteMember", async (req, res) => {
     await MembersModel.deleteMany({MemberName: req.body.memberName});
     res.send("deleted " + req.body.memberName);
@@ -123,7 +126,9 @@ app.post("/api/post/addOutreach", upload.single('filename'), async (req, res) =>
         }
     }
 });
-
+app.put("/api/put/updateOutreach", async (req, res) => {
+    console
+})
 app.delete("/api/delete/deleteOutreach/:id", async (req, res) => {
     await OutreachModel.deleteMany({ "Title" : req.params.id });
 });
