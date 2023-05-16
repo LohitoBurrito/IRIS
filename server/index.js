@@ -126,9 +126,6 @@ app.post("/api/post/addOutreach", upload.single('filename'), async (req, res) =>
         }
     }
 });
-app.put("/api/put/updateOutreach", async (req, res) => {
-    console
-})
 app.delete("/api/delete/deleteOutreach/:id", async (req, res) => {
     await OutreachModel.deleteMany({ "Title" : req.params.id });
 });

@@ -119,6 +119,7 @@ function MembersGui() {
                     </div>
                 </div>
                 <br/><br/><br/><br/>
+                
                 <form onSubmit={ deleteMember }>
                     <input type="text" placeholder='enter full name here' value={deleteName} onChange={(e) => {setDeleteName(e.target.value)}}/>
                     <br/><br/>
