@@ -16,6 +16,8 @@ const AboutUsModel = require('./models/Homepage/aboutUsModel');
 const DemosModel = require('./models/Homepage/demosModel');
 const TeamEventModel = require('./models/Homepage/teamEventModel');
 const TeamGlanceModel = require('./models/Homepage/teamGlanceModel');
+const RobotModel = require('./models/Homepage/RobotModel');
+const AwardsModel = require('./models/Homepage/AwardsModel');
 
 app.use(cors());
 
@@ -230,7 +232,9 @@ app.delete("/api/delete/deleteSponsor/:id", async (req, res) => {
 app.get("/api/get/aboutUs", async (req, res) => { res.send(await AboutUsModel.find({})) });
 app.get("/api/get/demos", async (req, res) => { res.send(await DemosModel.find({})) });
 app.get("/api/get/teamEvent", async (req, res) => { res.send(await TeamEventModel.find({})) });
-app.get("/api/get/teamGlance", async (req, res) => { res.send(await TeamGlanceModel.find({})) })
+app.get("/api/get/teamGlance", async (req, res) => { res.send(await TeamGlanceModel.find({})) });
+app.get("/api/get/awards", async (req, res) => { res.send(await AwardsModel.find({})) });
+app.get("/api/get/robots", async (req, res) => { res.send(await RobotModel.find({}))});
 
 app.put("/api/put/editAboutUs", async (req, res) => { 
     await AboutUsModel.updateOne({"val": 0},{ $set: { "aboutUsDesc": req.body.Id, "val": 0 }},{ upsert: true })
@@ -298,6 +302,70 @@ app.put("/api/post/teamGlance", upload.single('filename'), async (req, res) => {
     }
 })
 
+app.post("/api/post/addAward", async (req, res) => {
+    console.log(req.body)
+    const award = new AwardsModel({ Award: req.body.Award });
+    try {
+        await award.save();
+    } catch (err) {
+        console.log(err)
+    }
+});
+app.delete("/api/delete/deleteAward/:id", async (req, res) => {
+    console.log(req.params.id)
+    await AwardsModel.deleteMany({ "Award" : req.params.id });
+});
+app.put("/api/put/updateRobot", upload.single('filename'), async (req, res) => {
+    console.log(req.body)
+    const x = await RobotModel.find({});
+    if (x.length === 0) {
+        //add new robot
+        var string = req.body.filedata;
+        var bindata = "";
+        if (string.length != 0) {
+            bindata = Buffer.from(string.split(",")[1],"base64");
+        }
+        const robot = new RobotModel({ 
+            val: "0",
+            Robot: req.body.robotName,
+            x: req.body.x,
+            y: req.body.y,
+            zoom: req.body.zoom,
+            image: {
+                data: bindata,
+                contentType: "image/png"
+            }
+        });
+        try {
+            await robot.save();
+        } catch (err) {
+            console.log(err)
+        }
+    } else {
+        // change first robot
+        if (req.body.filedata !== undefined) {
+            var string = req.body.filedata;
+            var bindata = "";
+            if (string.length != 0) {
+                bindata = Buffer.from(string.split(",")[1],"base64");
+            }
+            await RobotModel.updateOne({"val": 0},{ $set: { "image": {data: bindata, contentType: "image/png"}, "val": 0 }},{ upsert: false })
+        }
+        if (req.body.robotName !== '') {
+            await RobotModel.updateOne({"val": 0},{ $set: { "Robot": req.body.robotName, "val": 0 }},{ upsert: false })
+        }
+        if (req.body.x !== '') {
+            await RobotModel.updateOne({"val": 0},{ $set: { "x": req.body.x, "val": 0 }},{ upsert: false })
+        }
+        if (req.body.y !== '') {
+            await RobotModel.updateOne({"val": 0},{ $set: { "y": req.body.y, "val": 0 }},{ upsert: false })
+        }
+        if (req.body.zoom !== '') {
+            await RobotModel.updateOne({"val": 0},{ $set: { "zoom": req.body.zoom, "val": 0 }},{ upsert: false })
+        }
+    }
+});
+
 app.post("/api/post/addTeamEvent", async (req, res) => { 
     console.log(req.body);
     const teamModel = new TeamEventModel({
@@ -325,7 +393,6 @@ app.post("/api/post/addDemos", async (req, res) => {
 
 app.delete("/api/delete/deleteTeamEvent/:id", async (req, res) => {  
     await TeamEventModel.deleteMany({ "eventTitle" : req.params.id });
-
 });
 app.delete("/api/delete/deleteDemos/:id", async (req, res) => {  
     await DemosModel.deleteMany({ "demosTitle" : req.params.id });

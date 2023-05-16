@@ -76,7 +76,12 @@ function AboutUs() {
 
 function TeamGlance() {
   const [teamGlanceData, setTeamGlanceData] = useState([])
-  const [url, setUrl] = useState("")
+  const [url, setUrl] = useState("");
+  const [robotUrl, setRobotUrl] = useState("");
+  const [awards, setAwards] = useState([]);
+  const [robot, setRobot] = useState([]);
+
+  const date = new Date().getFullYear()
 
   const arrayBufferToBase64 = (buffer) => {
     let binary = '';
@@ -94,29 +99,81 @@ function TeamGlance() {
       const base64 = arrayBufferToBase64(response.data[0].image.data.data);
       setUrl("data:image/png;base64," + base64);
     })
+    Axios.get(link + "/api/get/awards").then((response) => { setAwards(response.data) })
+    Axios.get(link + "/api/get/robots").then((response) => { 
+      setRobot(response.data[0]) 
+      const base64 = arrayBufferToBase64(response.data[0].image.data.data);
+      setRobotUrl("data:image/png;base64," + base64);
+    })
   },[])
 
 
   return (
     <div className='teamGlance'>
+      <br/><br/>
       <h1>Our Team at a Glance</h1>
       <div className='teamGlanceContainer'>
-        <div className='teamGlanceImage' style={{
-          width: "400px",
-          height: "400px",
-          backgroundImage: "url(" + url + ")",
-          backgroundSize: "contain",
-          borderRadius: "200px",
-          backgroundPositionX: teamGlanceData.x + "px",
-          backgroundPositionY: teamGlanceData.y + "px",
-          backgroundSize: teamGlanceData.zoom + "%",            
-        }}>
-        </div> 
-        <div className='teamGlanceText'>
-          <p>Years As A Team: {teamGlanceData.Years}</p><br/>
-          <p>Members: {teamGlanceData.Member}</p><br/>
-          <p>Mentors: {teamGlanceData.Mentor}</p><br/>
+        <div className='team_container_1'>
+          <div className='teamGlanceImage' style={{
+            width: "400px",
+            height: "400px",
+            backgroundImage: "url(" + url + ")",
+            backgroundSize: "contain",
+            borderRadius: "200px",
+            backgroundPositionX: teamGlanceData.x + "px",
+            backgroundPositionY: teamGlanceData.y + "px",
+            backgroundSize: teamGlanceData.zoom + "%",            
+          }}>
+          </div> 
+          <div className='teamGlanceText'>
+            <p>Years As A Team: {teamGlanceData.Years}</p><br/>
+            <p>Members: {teamGlanceData.Member}</p><br/>
+            <p>Mentors: {teamGlanceData.Mentor}</p><br/>
+          </div>
         </div>
+        <br/><br/><br/><br/>
+        <div className='team_container_2'>
+          <div className='teamGlanceText' style={{
+            paddingTop: "75px",
+            width: "400px",
+            textAlign: "center"
+          }}>
+            <h2 style={{
+              fontSize: "40px",
+              fontWeight: "500"
+            }}>{date} Season: </h2><br/>
+            <p>Awards:</p><br/>
+            {
+              awards.map((val) => {
+                return (
+                  <>
+                    <p style={{
+                      fontSize: "22.5px",
+                      fontWeight: "300"
+                    }}>{val.Award}</p><br/>
+                  </>
+                )
+              })
+            }
+            <p>Robot: </p><br/>
+            <p style={{
+              fontSize: "22.5px",
+              fontWeight: "300"
+            }}>{robot.Robot}</p>
+          </div>
+          <div className='teamGlanceImage' style={{
+            width: "400px",
+            height: "400px",
+            backgroundImage: "url(" + robotUrl + ")",
+            backgroundSize: "contain",
+            borderRadius: "200px",
+            backgroundPositionX: robot.x + "px",
+            backgroundPositionY: robot.y + "px",
+            backgroundSize: robot.zoom + "%",            
+          }}>
+          </div> 
+        </div>
+        <br/>
       </div>
     </div>
   )
