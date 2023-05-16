@@ -19,8 +19,8 @@ function HomeGui() {
     const [years, amountOfYears] = useState("");
     const [filename, setFilename] = useState("");
     const [filedata, setFiledata] = useState("");
-    const [x, setX] = useState("");
-    const [y, setY] = useState("");
+    const [x, setX] = useState("0");
+    const [y, setY] = useState("0");
     const [zoom, setZoom] = useState("100");
 
     const handleSubmit2 = (e) => {
