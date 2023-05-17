@@ -56,7 +56,8 @@
 .QandAcontainer650 {
     box-shadow: 0 0.125rem 0.375rem 0 rgba(0,0,0,.12);
     font-family: Josefin Sans,sans-serif;
-    height: 400px;
+    min-height: fit-content;
+    height: auto;
     padding-top: 30px;
     /* width: 100%; */
     width: 90vw;
@@ -86,6 +87,8 @@
     margin-left: 30px;
     color: black;
     font-family: Josefin Sans,sans-serif;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 .Answer650 {
     font-size: 25px;
