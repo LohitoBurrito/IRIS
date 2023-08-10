@@ -48,6 +48,7 @@ function Members() {
   useEffect(() => {
     Axios.get(link + '/api/get/members').then(res => {
       setMembers(res.data);
+      console.log(res.data)
     });
   },[]);
 
@@ -70,7 +71,6 @@ function Members() {
         {
           members.map((val, key) => {
             const base64 = arrayBufferToBase64(val.image.data.data);
-            console.log(base64);
             const url = 'data:image/png;base64,' + base64;
             return (
               <Card name={val.MemberName} role={val.JobTitle} picture={url} desc={val.Description} link={val.Linkedin} zoom={val.zoom} x={val.x} y={val.y}/>

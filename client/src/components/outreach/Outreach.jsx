@@ -87,6 +87,7 @@ function Outreach() {
             outreach.map((val) => {
               count++;
               const base64 = arrayBufferToBase64(val.image.data.data);
+              console.log(val)
               const url = 'data:image/png;base64,' + base64;
 
               if (val.x === undefined) {

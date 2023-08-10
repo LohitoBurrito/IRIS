@@ -1,13 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Main from './websiteComponents/main/Main'
-import Members from "./websiteComponents/members/Members";
-import Gui from './components/Gui';
+import Main from './components/main/Main'
+import Members from "./components/members/Members";
+import Calendar from "./components/calendar/Calendar";
+import Contact from "./components/contact/Contact";
+import Outreach from "./components/outreach/Outreach";
+import Sponsor from "./components/sponsor/Sponsor";
+import Join from "./components/join/Join";
 import './index.css'
-import Calendar from "./websiteComponents/calendar/Calendar";
-import Contact from "./websiteComponents/contact/Contact";
-import Outreach from "./websiteComponents/outreach/Outreach";
-import Sponsor from "./websiteComponents/sponsor/Sponsor";
-import Join from "./websiteComponents/join/Join";
 
 
 
@@ -16,7 +15,6 @@ function App() {
     <>
       <BrowserRouter>
           <Routes>
-            <Route path="/gui" element={<Gui/>}/>
             <Route path="/" element={<Main/>}/>
             <Route path="/main" element={<Main/>}/>
             <Route path="/about" element={<Main/>}/>
