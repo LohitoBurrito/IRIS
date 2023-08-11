@@ -1,11 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
-import Axios from 'axios'
+import { HomePageCollectionRef } from '../../../firebase/Firebase';
+import { getDocs } from 'firebase/firestore';
 import './home.css'
-
-const link = process.env.REACT_APP_API_URL;
-
 
 function Event() {
   const [demos, setDemos] = useState([]);
@@ -15,46 +13,58 @@ function Event() {
   const val2 = screen.width > 650 ? "eventDates" : "eventDatesBlock"
 
   useEffect(() => {
-    Axios.get(link + "/api/get/demos").then((response) => { setDemos(response.data) })
-    Axios.get(link + "/api/get/teamEvent").then((response) => { setEvents(response.data) })
+    const getDemosEvents = async () => {
+      const data = await getDocs(HomePageCollectionRef)
+      const dataUpdated = data.docs.map((doc) => ({...doc.data()}))[0]
+      setDemos(dataUpdated.Demos_And_Outreach)
+      setEvents(dataUpdated.Team_Events)
+    }
+
+    getDemosEvents()
   },[])
+
+  // h3 -> title
+  // h4 -> description
+  if (events !== undefined && events.length !== 0) {
+    console.log(events.keys)
+  }
 
   return (
     <div className='event'>
-    <h1>Upcoming Events</h1>
-    <p>A full calendar is available on our <Link className="link" to="/calendar">calendar</Link> page.</p>
-    <div className={val2}>
-      <div className={val1}>
-        <h2>Team Meetings:</h2>
-        <p>All meets posted on <Link className="link" to="/calendar">calendar</Link></p>
-      </div>
-      <div className={val1}>
-        <h2>Team Events:</h2>
-        {
-          events.map((val) => {
-            return (
-              <>
-                <h3>{val.eventTitle}</h3>
-                <h4>{val.eventDesc}</h4>
-              </>
-            )
-          })
-        } 
-      </div>
-      <div className={val1}>
-        <h2>Demos and Outreach:</h2>
+      <h1>Upcoming Events</h1>
+      <p>A full calendar is available on our <Link className="link" to="/calendar">calendar</Link> page.</p>
+      <div className={val2}>
+        <div className={val1}>
+          <h2>Team Meetings:</h2>
+          <p>All meets posted on <Link className="link" to="/calendar">calendar</Link></p>
+        </div>
+        <div className={val1}>
+          <h2>Team Events:</h2>
           {
-            demos.map((val) => {
+            events.map((val) => {
               return (
                 <>
-                  <h3 className='homepageTitle'>{val.demosTitle}</h3>
-                  <h4 className='homepageDescription'>{val.demosDesc}</h4>
+                  <h3>{val.Title}</h3>
+                  <h4>{val.Description}</h4>
                 </>
               )
             })
           }
+        </div>
+        <div className={val1}>
+          <h2>Demos and Outreach:</h2>
+          {
+            demos.map((val) => {
+              return (
+                <>
+                  <h3>{val.Title}</h3>
+                  <h4>{val.Description}</h4>
+                </>
+              )
+            })
+          }
+        </div>
       </div>
-    </div>
     </div>
   )
 }
@@ -63,7 +73,12 @@ function AboutUs() {
   const [aboutUs, setAboutUs] = useState("");
 
   useEffect(() => {
-    Axios.get(link + "/api/get/aboutUs").then((response) => { setAboutUs(response.data[0].aboutUsDesc) })
+    const getAbout = async () => {
+      const data = await getDocs(HomePageCollectionRef)
+      setAboutUs(data.docs.map((doc) => ({...doc.data()}))[0].About)
+    }
+
+    getAbout()
   },[])
 
   return (
@@ -76,35 +91,15 @@ function AboutUs() {
 
 function TeamGlance() {
   const [teamGlanceData, setTeamGlanceData] = useState([])
-  const [url, setUrl] = useState("");
-  const [robotUrl, setRobotUrl] = useState("");
-  const [awards, setAwards] = useState([]);
-  const [robot, setRobot] = useState([]);
-
   const date = new Date().getFullYear()
 
-  const arrayBufferToBase64 = (buffer) => {
-    let binary = '';
-    let bytes = new Uint8Array(buffer);
-    let len = bytes.byteLength;
-    for (let i = 0; i < len; i++) {
-      binary += String.fromCharCode(bytes[i]);
-    }
-    return window.btoa(binary);
-  };
-
   useEffect(() => {
-    Axios.get(link + "/api/get/teamGlance").then((response) => {
-      setTeamGlanceData(response.data[0]);
-      const base64 = arrayBufferToBase64(response.data[0].image.data.data);
-      setUrl("data:image/png;base64," + base64);
-    })
-    Axios.get(link + "/api/get/awards").then((response) => { setAwards(response.data) })
-    Axios.get(link + "/api/get/robots").then((response) => { 
-      setRobot(response.data[0]) 
-      const base64 = arrayBufferToBase64(response.data[0].image.data.data);
-      setRobotUrl("data:image/png;base64," + base64);
-    })
+    const getTeamGlance = async () => {
+      const data = await getDocs(HomePageCollectionRef)
+      setTeamGlanceData(data.docs.map((doc) => ({...doc.data()}))[0])
+    }
+
+    getTeamGlance()
   },[])
 
 
@@ -117,18 +112,19 @@ function TeamGlance() {
           <div className='teamGlanceImage' style={{
             width: "400px",
             height: "400px",
-            backgroundImage: "url(" + url + ")",
+            backgroundImage: "url(" + teamGlanceData.Team_Image + ")",
             backgroundSize: "contain",
             borderRadius: "200px",
-            backgroundPositionX: teamGlanceData.x + "px",
-            backgroundPositionY: teamGlanceData.y + "px",
-            backgroundSize: teamGlanceData.zoom + "%",            
+            backgroundPositionX: teamGlanceData.Team_Image_x + "px",
+            backgroundPositionY: teamGlanceData.Team_Image_y + "px",
+            backgroundSize: teamGlanceData.Team_Image_zoom + "%",   
+            backgroundRepeat: "no-repeat"         
           }}>
           </div> 
           <div className='teamGlanceText'>
             <p>Years As A Team: {teamGlanceData.Years}</p><br/>
-            <p>Members: {teamGlanceData.Member}</p><br/>
-            <p>Mentors: {teamGlanceData.Mentor}</p><br/>
+            <p>Members: {teamGlanceData.Members}</p><br/>
+            <p>Mentors: {teamGlanceData.Mentors}</p><br/>
           </div>
         </div>
         <br/><br/><br/><br/>
@@ -144,32 +140,34 @@ function TeamGlance() {
             }}>{date} Season: </h2><br/>
             <p>Awards:</p><br/>
             {
-              awards.map((val) => {
+              teamGlanceData.Awards !== undefined ?
+              teamGlanceData.Awards.map((val) => {
                 return (
                   <>
                     <p style={{
                       fontSize: "22.5px",
                       fontWeight: "300"
-                    }}>{val.Award}</p><br/>
+                    }}>{val}</p><br/>
                   </>
                 )
-              })
+              }) : <></>
             }
             <p>Robot: </p><br/>
             <p style={{
               fontSize: "22.5px",
               fontWeight: "300"
-            }}>{robot.Robot}</p>
+            }}>{teamGlanceData.Robot_Description}</p>
           </div>
           <div className='teamGlanceImage' style={{
             width: "400px",
             height: "400px",
-            backgroundImage: "url(" + robotUrl + ")",
+            backgroundImage: "url(" + teamGlanceData.Robot_Image + ")",
             backgroundSize: "contain",
             borderRadius: "200px",
-            backgroundPositionX: robot.x + "px",
-            backgroundPositionY: robot.y + "px",
-            backgroundSize: robot.zoom + "%",            
+            backgroundPositionX: teamGlanceData.Robot_Image_x + "px",
+            backgroundPositionY: teamGlanceData.Robot_Image_y + "px",
+            backgroundSize: teamGlanceData.Robot_Image_zoom + "%",  
+            backgroundRepeat: "no-repeat",
           }}>
           </div> 
         </div>
