@@ -7,9 +7,9 @@ import { useState, useEffect } from 'react'
 import './sponsor.css'
 
 
-function SponsorImage({url}) {
+function SponsorImage({url, link}) {
   return (
-    <img className="sponsorImage" src={url}/>
+    <a href={link} target="_blank" style={{ cursor: "pointer" }}><img href={link} className="sponsorImage" src={url}/></a>
   )
 }
 
@@ -57,7 +57,7 @@ function Sponsor() {
             if (val.sponsorType === "star") {
               return (
                 <>
-                  <SponsorImage url={ val.image }/>
+                  <SponsorImage url={ val.image } link={ val.link }/>
                 </>
               )
             } else {

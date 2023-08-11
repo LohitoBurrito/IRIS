@@ -1,6 +1,5 @@
 .sponsor {
     font-family: 'Josefin Sans', sans-serif;
-    overflow: ;
 }
 .sponsor h1 {
     padding-top: 23vh;
@@ -45,9 +44,13 @@
     justify-content: center;
     align-items: center;
 }
-.sponsorImage {
+.sponsorCards a {
     display: block;
     margin-top: 30px;
     margin-bottom: 30px;
     width: 30%;
+}
+.sponsorImage {
+    width: 100%;
+    height: 100%;
 }

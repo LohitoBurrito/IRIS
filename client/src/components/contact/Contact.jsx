@@ -36,15 +36,15 @@ function Contact() {
         <div className='socials'>
           <h2>Socials</h2>
           <div className='socialsContainer'>
-            <h3><a href={links.Instagram}><BsInstagram className='socialLogo'/></a></h3>
-            <h3><a href={links.Twitter}><FaTwitterSquare className='socialLogo'/></a></h3>
-            <h3><a href={links.Youtube}><BsYoutube className='socialLogo'/></a></h3>
-            <h3><a href={links.Facebook}><FaFacebookSquare className='socialLogo'/></a></h3>
+            <h3><a target="_blank" href={links.Instagram}><BsInstagram className='socialLogo'/></a></h3>
+            <h3><a target="_blank" href={links.Twitter}><FaTwitterSquare className='socialLogo'/></a></h3>
+            <h3><a target="_blank" href={links.Youtube}><BsYoutube className='socialLogo'/></a></h3>
+            <h3><a target="_blank" href={links.Facebook}><FaFacebookSquare className='socialLogo'/></a></h3>
           </div>
         </div>
       </div>
       <div className='slack'>
-        <h3>Slack<a href={links.Slack}><AiFillSlackSquare className='slackLogo'/></a></h3>
+        <h3>Slack<a target="_blank" href={links.Slack}><AiFillSlackSquare className='slackLogo'/></a></h3>
       </div>
       <Footer/>
     </div>

@@ -29,16 +29,16 @@ function Footer() {
             </div>
             <div className='socials'>
               <div className='socialsContainer'>
-                <a href={links.Instagram}><BsInstagram/></a>
+                <a target="_blank" href={links.Instagram}><BsInstagram/></a>
               </div>
               <div className='socialsContainer'>
-                <a href={links.Facebook}><FaFacebookSquare/></a>
+                <a target="_blank" href={links.Facebook}><FaFacebookSquare/></a>
               </div>
               <div className='socialsContainer'>
-                <a href={links.Twitter}><FaTwitterSquare/></a>
+                <a target="_blank" href={links.Twitter}><FaTwitterSquare/></a>
               </div>
               <div className='socialsContainer'>
-                <a href={links.Youtube}><BsYoutube/></a>
+                <a target="_blank" href={links.Youtube}><BsYoutube/></a>
               </div>
             </div>
           </div>         
