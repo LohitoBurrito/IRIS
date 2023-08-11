@@ -2,14 +2,14 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import Navbar from '../navbar/Navbar'
 import Footer from '../footer/Footer'
-import Axios from 'axios'
 import { MembersCollectionRef } from '../../firebase/Firebase'
 import { getDocs } from 'firebase/firestore'
 import './members.css'
 
-const link = process.env.REACT_APP_API_URL;
-
 function Card({name, role, picture, desc, link, zoom, x, y}) {
+  if (name === "Soumil Gupta") {
+    console.log(picture)
+  }
   return (
     <div className="cards">
       <div className='pictureContainer'>
@@ -48,23 +48,16 @@ function Card({name, role, picture, desc, link, zoom, x, y}) {
 function Members() {
   const [members, setMembers] = useState([]);
   useEffect(() => {
-    Axios.get(link + '/api/get/members').then(res => {
-      setMembers(res.data);
-      console.log(res.data)
-    });
 
+    const getMembers = async () => {
+      const data = await getDocs(MembersCollectionRef)
+      const dataUpdated = data.docs.map((doc) => ({...doc.data()})).sort((a, b) =>  a.order - b.order )
+      setMembers(dataUpdated)
+    }
+
+    getMembers()
     
   },[]);
-
-  const arrayBufferToBase64 = (buffer) => {
-    let binary = '';
-    let bytes = new Uint8Array(buffer);
-    let len = bytes.byteLength;
-    for (let i = 0; i < len; i++) {
-      binary += String.fromCharCode(bytes[i]);
-    }
-    return window.btoa(binary);
-  };
 
   return (
     <div className='members'>
@@ -73,11 +66,9 @@ function Members() {
       <hr/>
       <div className='membersContainer'>
         {
-          members.map((val, key) => {
-            const base64 = arrayBufferToBase64(val.image.data.data);
-            const url = 'data:image/png;base64,' + base64;
+          members.map((val) => {
             return (
-              <Card name={val.MemberName} role={val.JobTitle} picture={url} desc={val.Description} link={val.Linkedin} zoom={val.zoom} x={val.x} y={val.y}/>
+              <Card name={val.MemberName} role={val.JobTitle} picture={val.image} desc={val.Description} link={val.Linkedin} zoom={val.zoom} x={val.x} y={val.y}/>
             )
           })
         }

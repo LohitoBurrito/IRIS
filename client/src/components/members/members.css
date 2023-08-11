@@ -30,7 +30,7 @@
     margin-bottom: 20px;
 }
 .cards:hover {
-    background: rgba(0, 0, 0, 0.75);
+    background: black;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
