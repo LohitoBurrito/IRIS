@@ -1,11 +1,11 @@
 import React from 'react'
 import Navbar from '../navbar/Navbar'
 import Footer from '../footer/Footer'
+import { SponsorCollectionRef, SponsorPackageCollectionRef } from '../../firebase/Firebase'
+import { getDocs } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
-import Axios from 'axios'
 import './sponsor.css'
 
-const link = process.env.REACT_APP_API_URL;
 
 function SponsorImage({url}) {
   return (
@@ -16,29 +16,33 @@ function SponsorImage({url}) {
 function Sponsor() {
 
   const [sponsor, setSponsor] = useState([]);
+  const [sponsorPackage, setSponsorPackage] = useState("")
   
   useEffect(() => {
-    Axios.get(link + "/api/get/getSponsors").then((response) => { 
-      console.log(response.data);
-      setSponsor(response.data);
-    })
+
+    const getSponsors = async () => {
+      const data = await getDocs(SponsorCollectionRef)
+      const dataUpdated = data.docs.map((doc) => ({...doc.data()})).sort((a, b) =>  a.order - b.order )
+      setSponsor(dataUpdated)
+    }
+
+    const getSponsorsPackage = async () => {
+      const data = await getDocs(SponsorPackageCollectionRef)
+      const dataUpdated = data.docs.map((doc) => ({...doc.data()}))[0].link
+      setSponsorPackage(dataUpdated)
+    }
+
+    getSponsors()
+    getSponsorsPackage()
+    
   },[]);
 
-  const arrayBufferToBase64 = (buffer) => {
-    let binary = '';
-    let bytes = new Uint8Array(buffer);
-    let len = bytes.byteLength;
-    for (let i = 0; i < len; i++) {
-      binary += String.fromCharCode(bytes[i]);
-    }
-    return window.btoa(binary);
-  };
 
   return (
     <div className='sponsor'>
       <Navbar/>
       <h1>Sponsor Us:</h1>
-      <h3><a href="https://drive.google.com/file/d/1vxkaQB-io5pGporD5L91k8Sjy9NK8gvj/view">Sponsor Package</a></h3>
+      <h3><a href={sponsorPackage}>Sponsor Package</a></h3>
       <p className='bruh'>
       We have the talent. We have the passion. We need help from generous companies willing to support Illinois Robotics in Space as we build the best in autonomous and innovative mining robots.
       </p>
@@ -50,13 +54,10 @@ function Sponsor() {
       <div className='sponsorCards'>
         {
           sponsor.map((val) => {
-            const base64 = arrayBufferToBase64(val.filedata.data.data);
-            console.log(base64);
-            const url = 'data:image/png;base64,' + base64;
             if (val.sponsorType === "star") {
               return (
                 <>
-                  <SponsorImage url={ url }/>
+                  <SponsorImage url={ val.image }/>
                 </>
               )
             } else {
@@ -71,15 +72,10 @@ function Sponsor() {
       <div className='sponsorCards'>
         {
           sponsor.map((val) => {
-            const base64 = arrayBufferToBase64(val.filedata.data.data);
-            console.log(val.title)
-            console.log(base64);
-            const url = 'data:image/png;base64,' + base64;
-            console.log(val.sponsorType)
             if (val.sponsorType === "planet") {
               return (
                 <>
-                  <SponsorImage url={ url }/>
+                  <SponsorImage url={ val.image }/>
                 </>
               )
             } else {
