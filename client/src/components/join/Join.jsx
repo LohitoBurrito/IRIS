@@ -1,14 +1,13 @@
 import React from 'react'
 import Navbar from '../navbar/Navbar'
 import Footer from '../footer/Footer'
-import Axios from 'axios'
 import { useState, useEffect } from 'react'
+import { joinParagraphCollectionRef, FAQCollectionRef} from '../../firebase/Firebase' 
+import { getDocs } from 'firebase/firestore'
 import './join.css'
 
-const link = process.env.REACT_APP_API_URL;
 
 function Join() {
-  var count = 0;
   const [joinContent, setJoinContent] = useState("");
   const [faq, setFAQ] = useState([]);
 
@@ -19,8 +18,21 @@ function Join() {
 
 
   useEffect(() => {
-    Axios.get(link + "/api/get/getContent").then((response) => { setJoinContent(response.data[0].Content) })
-    Axios.get(link + "/api/get/getFAQ").then((response) => { setFAQ(response.data) })
+
+    const getJoin = async () => {
+      const data = await getDocs(joinParagraphCollectionRef)
+      setJoinContent(data.docs.map((doc) => ({...doc.data()}))[0].Join_Paragraph)
+    }
+
+    const getFAQ = async () => {
+      const data = await getDocs(FAQCollectionRef)
+      const dataUpdated = data.docs.map((doc) => ({...doc.data()})).sort((a, b) =>  a.Order - b.Order )
+      console.log(dataUpdated)
+      setFAQ(dataUpdated)
+    }
+
+    getJoin()
+    getFAQ()
   },[])
 
   return (
@@ -36,11 +48,9 @@ function Join() {
           <p className='FAQ'>FAQ</p><br/><br/><br/>
           {
             faq.map((value) => {
-              count++;
-              console.log(value);
               return (
                 <>
-                  <p className={val2}>{count}. {value.Question}</p>
+                  <p className={val2}>{value.Order}. {value.Question}</p>
                   <br/>
                   <p className={val3}>{value.Answer}</p>
                   <br/>

@@ -1,22 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './footer.css'
 import { AiFillHeart } from 'react-icons/ai'
 import { BsInstagram, BsYoutube } from 'react-icons/bs'
 import { FaFacebookSquare, FaTwitterSquare } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
-import Axios from 'axios'
-
-const link = process.env.REACT_APP_API_URL;
+import { contactCollectionRef } from '../../firebase/Firebase'
+import { getDocs } from 'firebase/firestore'
+import './footer.css'
 
 function Footer() {
   const [links, setLinks] = useState("");
 
   useEffect(() => {
-    Axios.get(link + "/api/get/contactData").then((response) => { 
-      console.log(response.data[0]);
-      setLinks(response.data[0]);
-    })
+    const getContact = async () => {
+      const data = await getDocs(contactCollectionRef)
+      setLinks(data.docs.map((doc) => ({...doc.data()}))[0])
+    }
+
+    getContact()
   },[])
 
   return (

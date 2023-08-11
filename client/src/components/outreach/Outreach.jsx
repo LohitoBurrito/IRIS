@@ -1,11 +1,10 @@
 import React from 'react'
 import Navbar from '../navbar/Navbar'
 import Footer from '../footer/Footer'
-import Axios from 'axios'
 import { useState, useEffect } from 'react'
+import { OutreachCollectionRef } from '../../firebase/Firebase'
+import { getDocs } from 'firebase/firestore'
 import './outreach.css'
-
-const link = process.env.REACT_APP_API_URL;
 
 function OutreachCardBase({title, desc}) {
   return (
@@ -23,7 +22,6 @@ function OutreachCardL({title, desc, picture, x, y, zoom, width}) {
     <div className='cardO'>
       <div className='imageBox' style={{
           width: 500 + "px",
-          
           backgroundPosition: x + "px" + " " + y + "px",
           backgroundImage: "url(" + picture + ")",
           backgroundSize: zoom + "%",
@@ -59,22 +57,15 @@ function Outreach() {
   const [outreach, setOutreach] = useState([]);
 
   useEffect(() => {
-    Axios.get(link + "/api/get/getOutreach").then((response) => {
-      console.log(response.data);
-      setOutreach(response.data)
-    })
+    const getOutreach = async () => {
+      const data = await getDocs(OutreachCollectionRef)
+      const dataUpdated = data.docs.map((doc) => ({...doc.data()})).sort((a, b) =>  a.order - b.order )
+      setOutreach(dataUpdated)
+    }
+
+    getOutreach()
   },[]);
 
-
-  const arrayBufferToBase64 = (buffer) => {
-    let binary = '';
-    let bytes = new Uint8Array(buffer);
-    let len = bytes.byteLength;
-    for (let i = 0; i < len; i++) {
-      binary += String.fromCharCode(bytes[i]);
-    }
-    return window.btoa(binary);
-  };
 
   if (screen.width >= 1250) {
     return (
@@ -86,21 +77,18 @@ function Outreach() {
           {
             outreach.map((val) => {
               count++;
-              const base64 = arrayBufferToBase64(val.image.data.data);
-              console.log(val)
-              const url = 'data:image/png;base64,' + base64;
 
-              if (val.x === undefined) {
+              if (val.x === "") {
                 return (
                   <OutreachCardBase title={val.Title} desc={val.Description}/>
                 )
               } else if (count % 2 == 0) {
                 return (
-                  <OutreachCardR title={val.Title} desc={val.Description} picture={url} x={val.x} y={val.y} zoom={val.zoom} width={val.width}/>
+                  <OutreachCardR title={val.Title} desc={val.Description} picture={val.image} x={val.x} y={val.y} zoom={val.zoom} width={val.width}/>
                 )
               } else {
                 return (
-                  <OutreachCardL title={val.Title} desc={val.Description} picture={url} x={val.x} y={val.y} zoom={val.zoom} width={val.width}/>
+                  <OutreachCardL title={val.Title} desc={val.Description} picture={val.image} x={val.x} y={val.y} zoom={val.zoom} width={val.width}/>
                 )
               }
             })

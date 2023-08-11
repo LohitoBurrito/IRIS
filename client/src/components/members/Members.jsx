@@ -1,9 +1,11 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import './members.css'
 import Navbar from '../navbar/Navbar'
 import Footer from '../footer/Footer'
 import Axios from 'axios'
+import { MembersCollectionRef } from '../../firebase/Firebase'
+import { getDocs } from 'firebase/firestore'
+import './members.css'
 
 const link = process.env.REACT_APP_API_URL;
 
@@ -50,6 +52,8 @@ function Members() {
       setMembers(res.data);
       console.log(res.data)
     });
+
+    
   },[]);
 
   const arrayBufferToBase64 = (buffer) => {
