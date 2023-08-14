@@ -17,6 +17,8 @@ function Sponsor() {
 
   const [sponsor, setSponsor] = useState([]);
   const [sponsorPackage, setSponsorPackage] = useState("")
+  const [paragraph_1, setParagraph_1] = useState("") 
+  const [paragraph_2, setParagraph_2] = useState("") 
   
   useEffect(() => {
 
@@ -28,8 +30,11 @@ function Sponsor() {
 
     const getSponsorsPackage = async () => {
       const data = await getDocs(SponsorPackageCollectionRef)
-      const dataUpdated = data.docs.map((doc) => ({...doc.data()}))[0].link
-      setSponsorPackage(dataUpdated)
+      const dataUpdated = data.docs.map((doc) => ({...doc.data()}))[0]
+
+      setSponsorPackage(dataUpdated.link)
+      setParagraph_1(dataUpdated.Paragraph_1)
+      setParagraph_2(dataUpdated.Paragraph_2)
     }
 
     getSponsors()
@@ -44,10 +49,10 @@ function Sponsor() {
       <h1>Sponsor Us:</h1>
       <h3><a href={sponsorPackage}>Sponsor Packet</a></h3>
       <p className='bruh'>
-      We have the talent. We have the passion. We need help from generous companies willing to support Illinois Robotics in Space as we build the best in autonomous and innovative mining robots.
+        {paragraph_1}
       </p>
       <p className='bruh'>
-      Interested in supporting our team? We’d love to talk to you! The best way to learn everything to know about sponsorship is through our Sponsorship Packet. Take a look, and contact us at iris.uiuc@gmail.com if you have any questions!
+        {paragraph_2}
       </p>
       <br/><br/><br/>
       <h2>Star Sponsors</h2>
