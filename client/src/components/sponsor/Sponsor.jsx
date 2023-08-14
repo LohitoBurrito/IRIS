@@ -42,7 +42,7 @@ function Sponsor() {
     <div className='sponsor'>
       <Navbar/>
       <h1>Sponsor Us:</h1>
-      <h3><a href={sponsorPackage}>Sponsor Package</a></h3>
+      <h3><a href={sponsorPackage}>Sponsor Packet</a></h3>
       <p className='bruh'>
       We have the talent. We have the passion. We need help from generous companies willing to support Illinois Robotics in Space as we build the best in autonomous and innovative mining robots.
       </p>
