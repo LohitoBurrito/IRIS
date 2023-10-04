@@ -73,7 +73,7 @@ function Sponsor() {
           })
         }
       </div>
-      <h2>Planet Sponsors</h2>
+{/*       <h2>Planet Sponsors</h2>
       <div className='sponsorCards'>
         {
           sponsor.map((val) => {
@@ -90,7 +90,7 @@ function Sponsor() {
             }
           })
         }
-      </div>
+      </div> */}
       <br/>
       <Footer/>
     </div>
