@@ -55,7 +55,7 @@ function Sponsor() {
         {paragraph_2}
       </p>
       <br/><br/><br/>
-      <h2>Star Sponsors</h2>
+      <h2>Lunar Sponsors</h2>
       <div className='sponsorCards'>
         {
           sponsor.map((val) => {
