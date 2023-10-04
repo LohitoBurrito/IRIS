@@ -59,7 +59,7 @@ function Sponsor() {
       <div className='sponsorCards'>
         {
           sponsor.map((val) => {
-            if (val.sponsorType === "star") {
+            if (val.sponsorType === "lunar") {
               return (
                 <>
                   <SponsorImage url={ val.image } link={ val.link }/>
